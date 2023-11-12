@@ -1,0 +1,58 @@
+#most-reviewed {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#most-reviewed-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#most-reviewed-container > div { 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#most-reviewed-container h2:hover {
+    background-color: rgba(2, 4, 3, 0.1);
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.most-reviewed-item {
+    flex-basis: 45%;
+    box-sizing: border-box;
+    border: 3px solid #5E5946;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+}
+
+.most-reviewed-item img {
+    width: 50%;
+    overflow: hidden;
+    border: 3px solid #5E5946;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 10px;
+    text-align: justify;
+    width: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.ratings {
+    font-size: 16px;
+}
+
+.condo-description {
+    font-size: 14.5px;
+}

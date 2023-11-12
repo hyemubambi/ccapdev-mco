@@ -1,0 +1,102 @@
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: #1F4721;
+}
+
+.container {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: max-content;
+    background: #FBFCFA;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.container header {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+div.form {
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form input, .form select, .form textarea {
+    height: 30px;
+    width: 100%;
+    padding: 0 15px;
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    outline: none;
+}
+
+.button {
+    color: #fff;
+    background: #1F4721;
+    width: 100px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.7rem;
+    cursor: pointer;
+    transition: 0.4s;
+    font-family: 'DM Serif Display', 'Roboto';
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #18301A;
+}
+
+.form-warning {
+    color: rgb(202, 33, 33);
+    text-align: center;
+    display: none;
+}
+
+#description {
+    height: 30px;
+    resize: none;
+}
+
+.form input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    background: #1F4721;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background: #18301A;
+}
+
+#errorText {
+    color: red;
+    font-size: 13px;
+}

@@ -1,0 +1,365 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+    
+.container {
+  display: flex;
+  width: 1200px;
+  padding: 0 30px;
+  justify-content: space-between;
+}
+  
+aside {
+  position: static;
+}
+  
+div.banner {
+  width: 100%;
+  height: 200px;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1F4721;
+  overflow: hidden;
+}
+    
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+}
+    
+.profile-wrapper aside.profile {
+  width: 280px;
+}
+    
+.profile-wrapper aside.profile span {
+  font-size: 18px;
+  color: #53626C;
+}
+
+.profile-wrapper aside.profile strong {
+  color: #53626C;
+}
+    
+.profile-wrapper aside.profile p {
+  font-size: 18px;
+  color: black;
+  margin-top: 15px;
+  width: 280px;
+}
+  
+.profile-wrapper aside.profile a {
+  font-size: 18px;
+  color: #1F4721;
+  margin-top: 15px;
+}
+    
+.timeline {
+  flex: 10;
+  background: #FFF;
+  margin: 10px 10 px 0px;
+}
+    
+.timeline nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 15px;
+}
+    
+.timeline nav a {
+  text-decoration: none;
+  color: #53626C;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+    
+    
+.timeline nav a.active {
+  color:  #1F4721;
+}
+    
+.tab-content {
+  display: none;
+  padding: 10px 15px;
+}
+  
+.review-container {
+  width: 100%;
+  background: #FBFCFA;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex; 
+  flex-direction: column; 
+  margin-block-end: 1rem; 
+}
+
+.review-container a {
+  color: #1F4721;
+}
+  
+.review-post {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.75rem;
+  justify-content: space-between; 
+  width: auto;
+}
+
+.comment-container {
+  width: 100%;
+  background: #FBFCFA;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex; 
+  flex-direction: column;
+  margin-block-end: 1rem;
+}
+  
+.comment-post {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.75rem;
+  justify-content: space-between; 
+  width: auto;
+}
+
+.post-profile {
+  flex: 0 0 auto; 
+  margin-right: 20px; 
+}
+  
+.post-profile img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid #1F4721; 
+}
+  
+.post-details {
+  flex-grow: 1;
+}
+  
+.user-id {
+  font-size: 18px;
+  color: #53626C;
+}
+  
+.post-body {
+  padding-top: 15px;
+  clear: both; 
+}
+
+.post-body strong{
+  color: #1F4721;
+}
+  
+.post-img {
+  overflow: hidden;
+}
+
+.post-img img{
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+}
+  
+.review-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; 
+}
+  
+.comments {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1F4721;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 20px; 
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1F4721;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 5px; 
+}
+
+.dislikes {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1F4721;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 20px; 
+}
+
+.review-actions p {
+  align-items: center;
+  text-decoration: none;
+  color: #1F4721;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: -10px;
+  margin-right: 20px; 
+}
+  
+.review-actions img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px; 
+}
+  
+.comment-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; 
+}
+
+.comment-actions p {
+  align-items: center;
+  text-decoration: none;
+  color: #1F4721;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: -10px;
+  margin-right: 20px; 
+}
+
+  
+.comment-actions img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px; 
+}
+
+  
+.crud-dropdown {
+  position: relative;
+  vertical-align: middle;
+  float: right;
+  align-items: center;
+}
+
+.crud-dropdown img { 
+  display: block;
+  transition: background-color 0.3s ease;
+  height: 25px;
+  width: 25px;
+}
+
+.crud-dropdown a {
+  color: black;
+  padding: 5px 5px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.crud-dropdown a:hover {
+  display: block;
+  border-radius: 20%;
+  background-color: rgba(2, 4, 3, 0.1);
+}
+
+
+.crud-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.crud-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+  
+.crud-dropdown:hover .crud-content {
+  display: block;
+  border-radius: 10%;
+}
+
+.crud-content a:hover {
+  display: block;
+  border-radius: 10%;
+  background-color: rgba(2, 4, 3, 0.1);
+}
+
+.dropbtn img {
+  height: 20px;
+  width: 20px;
+}
+
+/* PROFILE PHOTO */
+.profile-pic {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden; 
+  margin-top: -130px;
+}
+
+#main-pfp {
+  border: 5px solid #FFF;
+}
+
+.profile-pic input {
+  display: none;
+}
+
+.profile-pic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px 0 rgba(255,255,255,0.35);
+  border-radius: 50%; 
+  z-index: 0;
+}
+
+.img-label {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  color: transparent; /* make label text transparent by default */
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  transition: background-color 0.3s ease, color 0.3s ease; /* added transition for color */
+  border-radius: 50%;
+}
+
+.profile-pic:hover .img-label {
+  background-color: rgba(0,0,0,0.8);
+  color: #1F4721; /* make label text visible on hover */
+}
+
+.change-image {
+  color: transparent;
+  font-size: 12px;
+  margin: 0;
+  transition: color 0.3s ease;  /* Add transition for smooth color change */
+  z-index: -30;
+}
+
+.profile-pic:hover .change-image {
+  color: #FBFCFA;
+  z-index: 10;
+}

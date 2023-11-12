@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    background: #1F4721;
+}
+
+#condo:hover {
+    cursor: pointer;
+}
+
+/* https://www.w3schools.com/howto/howto_custom_select.asp */
+.custom-select {
+    position: relative;
+    border-radius: 6px;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: 'Arial';
+    color: #A9A9AC;
+    margin-bottom: 1.5rem;
+}
+  
+.custom-select select {
+    display: none; 
+}
+  
+.select-selected:hover {
+    background-color: rgba(2, 4, 3, 0.1);
+}
+
+.custom-select #placeholder {
+    color: #A9A9AC;
+}
+  
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #1F4721 transparent transparent transparent;
+}
+  
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #1F4721 transparent;
+    top: 7px;
+}
+  
+.select-items div,.select-selected {
+    color: #777777;
+    padding: 8px 4px;
+    border: 1px solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+  
+.select-items {
+    position: absolute;
+    background-color: #FBFCFA;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px solid #777777;
+    border-radius: 3px;
+}
+
+  
+.select-hide {
+    display: none;
+}
+  
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(2, 4, 3, 0.1);
+}
+
+.container {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 800px;
+    height: 550px;
+    background: #FBFCFA;
+    border-radius: 7px;
+}
+
+.profile-details {
+    padding-left: 14rem;
+    align-items: center;
+    transform: translate(0%, 0%);
+}
+
+.profile-details header {
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+#bio {
+    font-family: 'Arial';
+}
+
+div.form {
+    width: 550px;
+}
+
+.form label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form input, .form select, .form textarea {
+    height: 60px;
+    width: 100%;
+    padding: 0 15px;
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    outline: none;
+}
+
+.form input.button {
+    color: #fff;
+    background: #1F4721;
+    width: 100px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1.7rem;
+    cursor: pointer;
+    transition: 0.4s;
+    font-family: 'DM Serif Display', 'Roboto';
+}
+
+.form input.button:hover {
+    background: #18301A;
+}
+
+.form-warning {
+    color: rgb(202, 33, 33);
+    text-align: center;
+    display: none;
+}
+
+.pwd-req {
+    padding-left: 5%;
+    padding-bottom: 5%;
+}
+
+.pwd-content {
+    color: #53626C;
+    display: none;
+}
+
+.profilenav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #FBFCFA;
+    padding: 20px 10px;
+    height: 100%; 
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.profilenav a {
+    padding: 10px 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #1F4721;
+    display: block;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.profilenav a:hover {
+    background-color: rgba(2, 4, 3, 0.1);
+}
+
+.container {
+    display: flex;
+    width: 100%; 
+    margin: auto; 
+}
+
+.form {
+    width: 100%; 
+    padding: 20px;
+}
+
+.form section {
+    width: 100%
+}
+
+.form section header {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.form section label {
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+}
+
+
+.form section input, .form section select {
+    height: 40px;
+    width: 100%;
+    padding: 5px;
+    font-size: 14px; 
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    outline: none;
+}
+
+.form section textarea {
+    height: 200px;
+    width: 100%;
+    padding: 5px;
+    font-size: 14px; 
+    margin-bottom: 10px; 
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    outline: none;
+}

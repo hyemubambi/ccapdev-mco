@@ -1,0 +1,87 @@
+.condolist-main-body{
+    background-color: rgba(233, 239, 228, 0.793);
+    display: flex;
+    flex-direction: column;
+}
+.Upper-part{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.lower-part{
+    padding: 5px 5px 5px 20px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+
+}
+.upper-title{
+    padding: 5px 5px 5px 20px;
+}
+.condo-list{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-self: center;
+    margin-bottom: 50px;
+}
+.recommended-condo{
+    margin-bottom: 50px;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    border: 2px solid rgb(51, 86, 50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(183, 189, 174, 0.541);
+}
+hr{
+    width: 98%;
+    background-color: rgb(97, 111, 95);
+    height: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 3px rgba(123, 131, 123, 0.707);
+}
+#sort-by{
+    width: 10%;
+    padding: 5px 5px 5px 5px;
+    border: 3px solid rgb(22, 51, 22);
+    text-align: center;
+    background-color: rgba(168, 197, 168, 0.733);
+    align-self: center;
+    margin: 5px 5px 30px 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.picture{
+    width: 85%;
+    height: 60%;
+    padding-top: 5%;
+    align-self: center;
+    margin-bottom: 10px;
+
+}
+.picture img{
+    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.description{
+    margin-left: 10px;
+    width: 85%;
+    height: 40%;
+    padding: 10px 10px 10px 10px;
+    font-family: 'Merriweather', normal;
+    font-size: 1.05rem;
+}
+
+#title {
+    margin-left: auto;
+    margin-right: auto;
+}
