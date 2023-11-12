@@ -10,9 +10,6 @@ const path = require('path');
 
 const app = express();
 
-const atlas = "mongodb+srv://janinabongon:" + process.env.ATLAS_PASSWORD + "@cluster0.hv67jh3.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(atlas);
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
