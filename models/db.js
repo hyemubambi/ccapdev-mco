@@ -7,18 +7,13 @@ const Comment = require('./comment.js');
 
 const url = "mongodb+srv://janinabongon:" + process.env.ATLAS_PASSWORD + "@cluster0.hv67jh3.mongodb.net/ccapdev-mco";
 
-const options = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-};
-
 const database = {
 
     /*
         connects to database
     */
     connect: async function () {
-        await mongoose.connect(url, options);
+        await mongoose.connect(url);
         console.log('Connected to: ' + url);
     },
 

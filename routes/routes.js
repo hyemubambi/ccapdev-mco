@@ -10,16 +10,13 @@ router.use(express.json());
 router.use(express.urlencoded( { extended : true } ));
 
 // import controllers
+const homepageController = require('../controllers/homepageController');
 
 // GET FUNCTIONS
 
-router.get('/', (req, res) => {
-    res.render('homepage');
-});
+router.get('/', homepageController);
+router.get('/homepage', homepageController);
 
-router.get('/homepage', (req, res) => {
-    res.render('homepage');
-});
 
 router.use((req, res, next) => {
     const err = new Error('Not Found');

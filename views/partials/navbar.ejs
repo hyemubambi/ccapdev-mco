@@ -1,0 +1,32 @@
+<% loggedIn = false;
+   admin = true;
+%>
+
+<div id="navbar-visitor">
+    <a href="homepage-visitor.html"><img src="images/logo.png" alt="logo" width="100px"/></a>
+    <div id="searchbar">
+        <form action="SearchResult-visitor.html" method="get">
+            <input type="text" placeholder="Search...">
+        </form>
+    </div>
+    <div id="navbar-links">
+        <a href="aboutpage-visitor.html">About</a>
+        <a href="condolist-visitor.html">Condo List</a>
+
+        <% if (!loggedIn) { %>
+            <a href="login.html">Login/Register</a>
+        <% } else { %>
+            <div class="dropdown">
+                <a href="#">Welcome Back, User</a>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <% if (admin) { %>
+                        <a href="addcondo.html">Add a Condo</a>
+                    <% } %>    
+                    <a href="account.html">Account Settings</a>
+                    <a href="homepage-visitor.html">Logout</a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
