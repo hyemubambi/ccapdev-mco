@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search Results | Taft Tower Talk</title>
+        <link rel="icon" type="image/x-icon" href="images/logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+        <link rel="stylesheet" type="text/css" media="all" href="css/searchresult-css.css">
+    </head>
+    <body>
+        <!-- NAVIGATION BAR -->
+        <%- include('./partials/navbar.ejs')%>
+        <!-- NAVIGATION BAR -->
+
+        <% condos.forEach(condo => { %>
+            <div class = "results-container">
+                <a href = "ManilaResidence-user.html"><img class = "results-image" src = "images/manilaresidences.jpg"></a>
+    
+                <div class = "results-description">
+                    <div class = "results-header">
+                        <a href = "ManilaResidence-user.html"><h1 class = "results-name"> <%= condo.cName %> </h1></a>
+                        <p class = "results-rating"> <%= condo.rating %> ( <%= condo.nReviews %> )</p>
+                    </div>
+                    <p class = "results-budget"> <%= condo.lRange %> to <%= condo.hRange %> </p>
+                </div>
+            </div>
+        <% }) %>
+    </body>
+</html>
