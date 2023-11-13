@@ -5,7 +5,7 @@ const Condo = require('./condo.js');
 const Review = require('./review.js');
 const Comment = require('./comment.js');
 
-const url = "mongodb+srv://janinabongon:" + process.env.ATLAS_PASSWORD + "@cluster0.hv67jh3.mongodb.net/?retryWrites=true&w=majority";
+const url = "mongodb+srv://janinabongon:" + process.env.ATLAS_PASSWORD + "@cluster0.hv67jh3.mongodb.net/ccapdev-mco";
 
 const options = {
     useUnifiedTopology: true,
