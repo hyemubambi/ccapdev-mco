@@ -22,10 +22,8 @@ router.get('/homepage', (req, res) => {
 });
 
 router.use((req, res, next) => {
-    // Create a 404 Not Found error
     const err = new Error('Not Found');
     err.status = 404;
-    // Pass the error to the error-handling middleware
     next(err);
 });
 
