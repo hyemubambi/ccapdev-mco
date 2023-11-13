@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Error Page | Taft Tower Talk</title>
+        <link rel="icon" type="image/x-icon" href="images/logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+        <link rel="stylesheet" type="text/css" href="css/homepage-css.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            body {
+                text-align: center;
+            }
+            a {
+                text-decoration: none;
+                text-decoration: underline;
+            }            
+        </style>
+    </head>
+    <body>
+        <h1>Error <%= err.status %></h1>
+        <h3><%= error %></h3>
+        <a href="/">
+            <h5>Go Back to Home</h5>
+        </a>
+    </body>
+</html>

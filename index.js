@@ -15,17 +15,16 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-
 app.use('/', routes);
-app.use(function (req, res) {
-    res.render('error');
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.status || 500).render('error', { err, error: err.message });
 });
 
 db.connect();
 
 //just call the function here
 addData.populateCondo();
-
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("Server started on port 3000");
