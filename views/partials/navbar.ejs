@@ -2,11 +2,13 @@
    admin = true;
 %>
 
+<script src="public/js/navbar.js"></script>
+
 <div id="navbar-visitor">
     <a href="homepage-visitor.html"><img src="images/logo.png" alt="logo" width="100px"/></a>
     <div id="searchbar">
-        <form action="SearchResult-visitor.html" method="get">
-            <input type="text" placeholder="Search...">
+        <form action="/searchResult" method="get">
+            <input type="text" name = "keyword" placeholder="Search...">
         </form>
     </div>
     <div id="navbar-links">

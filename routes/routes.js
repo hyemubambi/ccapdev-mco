@@ -11,11 +11,13 @@ router.use(express.urlencoded( { extended : true } ));
 
 // import controllers
 const homepageController = require('../controllers/homepageController');
+const searchController = require('../controllers/searchController');
 
 // GET FUNCTIONS
 
 router.get('/', homepageController);
 router.get('/homepage', homepageController);
+router.get('/searchResult', searchController);
 
 
 router.use((req, res, next) => {
