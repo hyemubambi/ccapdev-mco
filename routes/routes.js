@@ -16,6 +16,7 @@ const searchController = require('../controllers/searchController');
 const condolistController = require('../controllers/condolistController');
 const aboutpageController = require('../controllers/aboutpageController');
 const condoprofileController = require('../controllers/condoprofileController');
+const addcondoController = require('../controllers/addcondoController');
 
 // GET FUNCTIONS
 
@@ -24,7 +25,9 @@ router.get('/homepage', homepageController);
 router.get('/searchResult', searchController);
 router.get('/condolist', condolistController);
 router.get('/aboutpage', aboutpageController);
-router.get('/condo/profile', condoprofileController);
+router.get('/condoprofile', condoprofileController);
+router.get('/addcondo', addcondoController.addCondoController);
+router.get('/addcondo', addcondoController.postAddCondo);
 
 router.use((req, res, next) => {
     const err = new Error('Not Found');
