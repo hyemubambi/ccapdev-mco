@@ -1,4 +1,3 @@
-// Your search controller logic
 const Search = require('../models/condo');
 
 async function searchController(req, res) {

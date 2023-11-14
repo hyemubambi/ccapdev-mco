@@ -26,7 +26,7 @@ const CondoSchema = new mongoose.Schema({
         default: 0,
     },
     photo: {
-        type: Number,
+        type: String,
         required: true,
     },
 });

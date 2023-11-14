@@ -1,10 +1,5 @@
-
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
-const Condo = require('../models/condo');
-const Review = require('../models/review');
-const Comment = require('../models/comment');
 
 router.use(express.json());
 

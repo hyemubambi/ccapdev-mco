@@ -26,7 +26,7 @@
 
                 <% condos.forEach(condo => { %>
                 <div class="most-reviewed-item">
-                    <img src="images/logo.png" alt="condo photo" />
+                    <img src="<%=condo.photo%>" alt="condo photo" />
                     <div class="details-container">
                         <a href="/condoprofile?name=<%= encodeURIComponent(condo.cName) %>">
                         <h2> <%= condo.cName %> </h2>
