@@ -28,7 +28,7 @@
                 <div class="most-reviewed-item">
                     <img src="images/logo.png" alt="condo photo" />
                     <div class="details-container">
-                        <a href="#">
+                        <a href="/condoprofile?name=<%= encodeURIComponent(condo.cName) %>">
                         <h2> <%= condo.cName %> </h2>
                         </a>
                         <span class="ratings"> <%= condo.rating %> <span class="no-ratings"> (<%= condo.nReviews %>) </span></span>
@@ -43,6 +43,6 @@
 
         </div>
         <!-- MOST REVIEWED CONDOS -->
-        <script src="javascript/homepage.js"></script>
+        <script src="js/homepage.js"></script>
     </body>
 </html>
