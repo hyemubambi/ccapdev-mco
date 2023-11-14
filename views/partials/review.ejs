@@ -1,0 +1,145 @@
+<% reviews.forEach(review => { %>
+<div class="review">
+    <header>
+        <a href="#"><img class="review-icon" src="uploads/sabrina.png"></a>
+        <div class="review-main-details">
+            <div class="review-user">
+                <a href="#"><h3 class="user-name"><%= review.username %></h3></a>
+                <a href="#"><span class="user-id"><%= review.username %></span></a>
+            </div>
+            <div class="review-condo">
+                <a href="#"><span class="review-condo-name"><%= review.condo %></span> | <span class="review-condo-rating"><%= review.rating %>/5</span></a>
+            </div>
+        </div>
+        <div class="crud-dropdown">
+            <a><img src = "images/options.svg" alt="Options"></a>
+            <div class="crud-content">
+                <a class="review-edit-button">Edit</a>
+                <a class="review-delete-button">Delete</a>
+            </div>
+        </div>
+    </header>
+
+    <a href="#">
+    <div class="review-contents">
+        <h2 class="review-title"><%= review.title %></h2>
+        <span class="review-body">
+            <%= review.text %>
+        </span>
+        <div class="review-photos-container">
+            <% review.photos.forEach(photo => { %>
+                <img class="review-photo" src="<%= photo %>">
+            <% }) %>
+        </div>
+    </div>
+    </a>
+
+    <hr class="line">
+    <div class="buttons-container">
+        <svg class="like-button" width="800px" height="800px" viewBox="0 -0.5 21 21" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            <g id="SVGRepo_iconCarrier">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-219.000000, -760.000000)">
+                        <g id="icons" transform="translate(56.000000, 160.000000)">
+                            <path class="svg-fill" d="M163,610.021159 L163,618.021159 C163,619.126159 163.93975,620.000159 
+                            165.1,620.000159 L167.199999,620.000159 L167.199999,608.000159 L165.1,608.000159 C163.93975,608.000159 163,608.916159 163,610.021159 M183.925446,611.355159 
+                            L182.100546,617.890159 C181.800246,619.131159 180.639996,620.000159 179.302297,620.000159 L169.299999,620.000159 L169.299999,608.021159 L171.104948,601.826159 
+                            C171.318098,600.509159 172.754498,599.625159 174.209798,600.157159 C175.080247,600.476159 175.599997,601.339159 175.599997,602.228159 L175.599997,607.021159 
+                            C175.599997,607.573159 176.070397,608.000159 176.649997,608.000159 L181.127196,608.000159 C182.974146,608.000159 184.340196,609.642159 183.925446,611.355159"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <span class="like-counter" class="button-counter"><%= review.likes %></span>
+        
+        <svg class="dislike-button" width="800px" height="800px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            <g id="SVGRepo_iconCarrier"> <title>dislike [#1F4721]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-139.000000, -760.000000)" fill="#1F4721"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path class="svg-fill" d="M101.900089,600 L99.8000892,600 L99.8000892,611.987622 L101.900089,611.987622 C103.060339,611.987622 104.000088,611.093545 104.000088,609.989685 L104.000088,601.997937 C104.000088,600.894077 103.060339,600 101.900089,600 M87.6977917,600 L97.7000896,600 L97.7000896,611.987622 L95.89514,618.176232 C95.6819901,619.491874 94.2455904,620.374962 92.7902907,619.842512 C91.9198408,619.52484 91.400091,618.66273 91.400091,617.774647 L91.400091,612.986591 C91.400091,612.43516 90.9296911,611.987622 90.3500912,611.987622 L85.8728921,611.987622 C84.0259425,611.987622 82.6598928,610.35331 83.0746427,608.641078 L84.8995423,602.117813 C85.1998423,600.878093 86.360092,600 87.6977917,600" id="dislike-[#1F4721]"> </path> </g> </g> </g> </g>
+        </svg>
+        <span class="dislike-counter" class="button-counter"><%= review.dislikes %></span>
+        
+        <svg class="comment-button" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            <g id="SVGRepo_iconCarrier">
+            <path class="svg-fill" d="M10.968 18.769C15.495 18.107 19 14.434 19 9.938a8.49 8.49 0 0 0-.216-1.912C20.718 9.178 22 11.188 22 13.475a6.1 6.1 0 0 1-1.113 3.506c.06.949.396 1.781 1.01 2.497a.43.43 0 0 1-.36.71c-1.367-.111-2.485-.426-3.354-.945A7.434 7.434 0 0 1 15 19.95a7.36 7.36 0 0 1-4.032-1.181z" fill="#1F4721"/>
+            <path class="svg-fill" d="M7.625 16.657c.6.142 1.228.218 1.875.218 4.142 0 7.5-3.106 7.5-6.938C17 6.107 13.642 3 9.5 3 5.358 3 2 6.106 2 9.938c0 1.946.866 3.705 2.262 4.965a4.406 4.406 0 0 1-1.045 2.29.46.46 0 0 0 .386.76c1.7-.138 3.041-.57 4.022-1.296z" fill="#1F4721"/>
+            </g>
+        </svg>
+
+        <span class="review-date-time"><%= review.date %></span>
+    
+    </div>
+    <hr class="line">
+
+    <div class="comment-input">
+        <img class="review-icon" src ="uploads/yunjin.jpg">
+        <form class="newComment" action="#">
+            <textarea class="newComment" name="newComment" rows="4" placeholder="Comment..." required></textarea><br>
+
+            <input type="file" class="commentImg" name="commentImg" accept="image/*"><br>
+            <button type="submit">Post Comment</button> 
+        </form>
+    </div>
+
+    <hr class="comment-line line">
+
+    <div class="review-comments-container">
+        
+        <div class="comment">
+            <header>
+                <img class="comment-icon" src="users/kazuha.jpg">
+                <div class="comment-main-details">
+                    <div class="comment-user">
+                        <h3 class="user-name">Kazuha Nakamura</h3> <span class="user-id">@balletzuha</span>
+                    </div>
+                    <span class="comment-date-time">October 15, 2001 10:15AM</span>
+                </div>
+                <div class="crud-dropdown">
+                    <a><img src = "images/options.svg" alt="Options"></a>
+                    <div class="crud-content">
+                        <a class="comment-edit-button">Edit</a>
+                        <a class="comment-delete-button">Delete</a>
+                    </div>
+                </div>
+            </header>
+            <div class="comment-body">
+                I agree so much actually! Gave me the chills... Like OMG ??? Hahaha so fucking scary
+            </div>
+            <hr class="line">
+            <div class="comment-buttons">
+                <svg class="comment-like-button" width="800px" height="800px" viewBox="0 -0.5 21 21" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview" transform="translate(-219.000000, -760.000000)">
+                                <g id="icons" transform="translate(56.000000, 160.000000)">
+                                    <path class="svg-fill" d="M163,610.021159 L163,618.021159 C163,619.126159 163.93975,620.000159 
+                                    165.1,620.000159 L167.199999,620.000159 L167.199999,608.000159 L165.1,608.000159 C163.93975,608.000159 163,608.916159 163,610.021159 M183.925446,611.355159 
+                                    L182.100546,617.890159 C181.800246,619.131159 180.639996,620.000159 179.302297,620.000159 L169.299999,620.000159 L169.299999,608.021159 L171.104948,601.826159 
+                                    C171.318098,600.509159 172.754498,599.625159 174.209798,600.157159 C175.080247,600.476159 175.599997,601.339159 175.599997,602.228159 L175.599997,607.021159 
+                                    C175.599997,607.573159 176.070397,608.000159 176.649997,608.000159 L181.127196,608.000159 C182.974146,608.000159 184.340196,609.642159 183.925446,611.355159"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                <span class="comment-like-counter" class="button-counter">15</span>
+                
+                <svg class="comment-dislike-button" width="800px" height="800px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier"> <title>dislike [#1F4721]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-139.000000, -760.000000)" fill="#1F4721"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path class="svg-fill" d="M101.900089,600 L99.8000892,600 L99.8000892,611.987622 L101.900089,611.987622 C103.060339,611.987622 104.000088,611.093545 104.000088,609.989685 L104.000088,601.997937 C104.000088,600.894077 103.060339,600 101.900089,600 M87.6977917,600 L97.7000896,600 L97.7000896,611.987622 L95.89514,618.176232 C95.6819901,619.491874 94.2455904,620.374962 92.7902907,619.842512 C91.9198408,619.52484 91.400091,618.66273 91.400091,617.774647 L91.400091,612.986591 C91.400091,612.43516 90.9296911,611.987622 90.3500912,611.987622 L85.8728921,611.987622 C84.0259425,611.987622 82.6598928,610.35331 83.0746427,608.641078 L84.8995423,602.117813 C85.1998423,600.878093 86.360092,600 87.6977917,600" id="dislike-[#1F4721]"> </path> </g> </g> </g> </g>
+                </svg>
+                <span class="comment-dislike-counter" class="button-counter">20</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<% }) %>

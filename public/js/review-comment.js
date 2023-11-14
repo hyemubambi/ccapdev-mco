@@ -2,80 +2,64 @@ $(document).ready(function() {
     $(".comment-input").hide();
     $(".comment-line").hide();
 
-    const dateToday = new Date();
-    const optionsDate = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    };
-    const formattedDate = dateToday.toLocaleString('en-US', optionsDate);
-
-    const optionsTime = {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-    };
-    const formattedTime = dateToday.toLocaleString('en-US', optionsTime).replace(' ', '');
-
-    const formattedDateTime = formattedDate + ' ' + formattedTime;
-
-    $('.review-date-time').text(formattedDateTime);
-    $('.comment-date-time').text(formattedDateTime);
-
-    var likeClicked = false;
     $(".like-button").click(function() {
-        likeClicked = !likeClicked;
-        var likeCounter = parseInt($(".like-counter").text());
-        $(".like-counter").text(likeCounter + 1);
-
-        if (likeClicked) {
-            $(".like-counter").text(likeCounter + 1);
+        var likeCounter = $(this).siblings(".like-counter");
+        var currentCount = parseInt(likeCounter.text());
+        var likeClicked = $(this).data('clicked');
+        
+        if (!likeClicked) {
+            likeCounter.text(currentCount + 1);
         } else {
-            $(".like-counter").text(likeCounter - 1);
+            likeCounter.text(currentCount - 1);
         }
+
+        $(this).data('clicked', !likeClicked);
+        $(this).find(".svg-fill").toggleClass("clicked");
     });
 
-    var commLikeClicked = false;
-    $(".comment-like-button").click(function() {
-        commLikeClicked = !commLikeClicked;
-        var commLikeCounter = parseInt($(".comment-like-counter").text());
-        $(".comment-like-counter").text(commLikeCounter + 1);
-        $(".comment-like-button .svg-fill").toggleClass("clicked");
-        if (commLikeClicked) {
-            $(".comment-like-counter").text(commLikeCounter + 1);
-        } else {
-            $(".comment-like-counter").text(commLikeCounter - 1);
-        }
-    });
-
-    var dislikeClicked = false;
     $(".dislike-button").click(function() {
-        dislikeClicked = !dislikeClicked;
-        var dislikeCounter = parseInt($(".dislike-counter").text());
-        $(".dislike-counter").text(dislikeCounter + 1);
-
-        $(".dislike-button .svg-fill").toggleClass("clicked");
-
-        if (dislikeClicked) {
-            $(".dislike-counter").text(dislikeCounter + 1);
+        var dislikeCounter = $(this).siblings(".dislike-counter");
+        var currentCount = parseInt(dislikeCounter.text());
+        var dislikeClicked = $(this).data('clicked');
+        
+        if (!dislikeClicked) {
+            dislikeCounter.text(currentCount + 1);
         } else {
-            $(".dislike-counter").text(dislikeCounter - 1);
+            dislikeCounter.text(currentCount - 1);
         }
+
+        $(this).data('clicked', !dislikeClicked);
+        $(this).find(".svg-fill").toggleClass("clicked");
     });
 
-    var commDislikeClicked = false;
-    $(".comment-dislike-button").click(function() {
-        commDislikeClicked = !commDislikeClicked;
-        var commDislikeCounter = parseInt($(".comment-dislike-counter").text());
-        $(".comment-dislike-counter").text(commDislikeCounter + 1);
-
-        $(".comment-dislike-button .svg-fill").toggleClass("clicked");
-
-        if (commDislikeClicked) {
-            $(".comment-dislike-counter").text(commDislikeCounter + 1);
+    $(".comment-like-button").click(function() {
+        var commLikeCounter = $(this).siblings(".comment-like-counter");
+        var currentCount = parseInt(commLikeCounter.text());
+        var commLikeClicked = $(this).data('clicked');
+        
+        if (!commLikeClicked) {
+            commLikeCounter.text(currentCount + 1);
         } else {
-            $(".comment-dislike-counter").text(commDislikeCounter - 1);
+            commLikeCounter.text(currentCount - 1);
         }
+
+        $(this).data('clicked', !commLikeClicked);
+        $(this).find(".svg-fill").toggleClass("clicked");
+    });
+
+    $(".comment-dislike-button").click(function() {
+        var commDislikeCounter = $(this).siblings(".comment-dislike-counter");
+        var currentCount = parseInt(commDislikeCounter.text());
+        var commDislikeClicked = $(this).data('clicked');
+        
+        if (!commDislikeClicked) {
+            commDislikeCounter.text(currentCount + 1);
+        } else {
+            commDislikeCounter.text(currentCount - 1);
+        }
+
+        $(this).data('clicked', !commDislikeClicked);
+        $(this).find(".svg-fill").toggleClass("clicked");
     });
 
     var commentButtonClicked = false;
@@ -108,7 +92,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#review-container').on('click', '.review-edit-button', function() {
+    $('#review-container-user').on('click', '.review-edit-button', function() {
         const reviewDiv = $(this).closest('.review');
         const reviewBody = reviewDiv.find('.review-body');
         const reviewText = reviewBody.text().trim();
