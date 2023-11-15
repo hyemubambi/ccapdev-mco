@@ -6,12 +6,10 @@ router.use(express.json());
 router.use(express.urlencoded( { extended : true } ));
 
 const upload = require('../controllers/uploadController');
-// import controllers
 const homepageController = require('../controllers/homepageController');
 const searchController = require('../controllers/searchController');
 const condolistController = require('../controllers/condolistController');
 const aboutpageController = require('../controllers/aboutpageController');
-// const condoprofileController = require('../controllers/condoprofileController');
 const {addCondoController} = require('../controllers/addcondoController');
 const {postAddCondo} = require('../controllers/addcondoController');
 const {condoprofileController} = require('../controllers/condoprofileController');
