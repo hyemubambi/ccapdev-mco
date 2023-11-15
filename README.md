@@ -13,3 +13,10 @@
 - npm install mongoose
 - npm install --save multer
 - npm i dotenv
+
+STEPS
+1) Unzip folder
+2) Go to CCAPDEV-Phase2-Group10 directory
+3) Open Command Prompt
+4) Type 'nodemon'
+5) Go to a web browser then type 'localhost:3000'
