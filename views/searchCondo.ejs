@@ -13,11 +13,11 @@
 
         <% condos.forEach(condo => { %>
             <div class = "results-container">
-                <a href = "ManilaResidence-user.html"><img class = "results-image" src = "images/manilaresidences.jpg"></a>
+                <a href = "/condoprofile?name=<%= encodeURIComponent(condo.cName) %>"><img class = "results-image" src = "<%= condo.photo %>"></a>
     
                 <div class = "results-description">
                     <div class = "results-header">
-                        <a href = "ManilaResidence-user.html"><h1 class = "results-name"> <%= condo.cName %> </h1></a>
+                        <a href = "/condoprofile?name=<%= encodeURIComponent(condo.cName) %>"><h1 class = "results-name"> <%= condo.cName %> </h1></a>
                         <p class = "results-rating"> <%= condo.rating %> ( <%= condo.nReviews %> )</p>
                     </div>
                     <p class = "results-budget"> <%= condo.lRange %> to <%= condo.hRange %> </p>
