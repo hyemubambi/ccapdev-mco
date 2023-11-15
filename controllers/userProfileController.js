@@ -2,9 +2,10 @@ const User = require('../models/user.js');
 const Condo = require('../models/condo.js');
 const Review = require('../models/review.js');
 const Comment = require('../models/comment.js');
+
 async function userProfileController(req, res) {
     try {
-        const username = req.query.name;
+        const username = req.query.username;
         console.log("username" + username);
 
         // Find the user by username
