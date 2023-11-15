@@ -1,7 +1,7 @@
 <% reviews.forEach(review => { %>
 <div class="review">
     <header>
-        <a href="#"><img class="review-icon" src="uploads/sabrina.png"></a>
+        <a href="#"><img class="review-icon" src="<uploads/sabrina.png>"></a>
         <div class="review-main-details">
             <div class="review-user">
                 <a href="#"><h3 class="user-name"><%= review.username %></h3></a>
@@ -27,10 +27,15 @@
             <%= review.text %>
         </span>
         <div class="review-photos-container">
-            <% review.photos.forEach(photo => { %>
-                <img class="review-photo" src="<%= photo %>">
-            <% }) %>
+            <% if (review.photos && review.photos.length > 0) { %>
+                <% review.photos.forEach(photo => { %>
+                    <img class="review-photo" src="<%= photo %>">
+                <% }) %>
+            <% } else { %>
+                
+            <% } %>
         </div>
+        
     </div>
     </a>
 
@@ -96,10 +101,10 @@
             <% reviewComments.forEach(comment => { %>
             <div class="comment">
                 <header>
-                    <img class="comment-icon" src="users/kazuha.jpg">
+                    <img class="comment-icon" src="images/default-pfp.jpg">
                     <div class="comment-main-details">
                         <div class="comment-user">
-                            <h3 class="user-name"><%= comment.username %></h3> <span class="user-id">@balletzuha</span>
+                            <h3 class="user-name"><%= comment.username %></h3> <span class="user-id">@<%= comment.username %></span>
                         </div>
                         <span class="comment-date-time"><%= comment.date %></span>
                     </div>

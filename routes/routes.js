@@ -15,6 +15,12 @@ const {postAddCondo} = require('../controllers/addcondoController');
 const {condoprofileController} = require('../controllers/condoprofileController');
 const {submitReview} = require('../controllers/condoprofileController');
 const {submitComment} = require('../controllers/condoprofileController');
+const userProfileController = require('../controllers/userProfileController');
+const {registerController} = require('../controllers/registerController');
+const {postRegister} = require('../controllers/registerController');
+const {loginController} = require('../controllers/loginController');
+const {postLogin} = require('../controllers/loginController');
+const editProfileController = require('../controllers/editProfileController');
 
 // GET FUNCTIONS
 
@@ -30,6 +36,15 @@ router.post('/addcondo', upload.single('image'), postAddCondo);
 
 router.get('/submitCondoReview', submitReview);
 router.get('/submitReviewComment', submitComment);
+
+router.get('/userprofile', userProfileController);
+
+router.get('/register', registerController);
+router.post('/register', postRegister);
+router.get('/login', loginController);
+router.post('/login', postLogin);
+
+router.get('/editprofile', editProfileController);
 
 router.use((req, res, next) => {
     const err = new Error('Not Found');

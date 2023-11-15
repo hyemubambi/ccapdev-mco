@@ -50,7 +50,7 @@ async function submitReview(req, res) {
 
         // Redirect to the condo profile page with the saved review's condo name
         res.redirect(`/condoprofile?name=${savedReview.condo}`);
-    } catch (error) {
+    } catch {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
@@ -83,7 +83,7 @@ async function submitComment(req, res) {
 
         // Redirect to the condo profile page with the saved review's condo name
         res.redirect(`/condoprofile?name=${encodedCondo}&reviewId=${savedComment.review}`);
-    } catch (error) {
+    } catch {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }

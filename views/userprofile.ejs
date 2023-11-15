@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= user.username %> | Taft Tower Talk</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <link rel="stylesheet" type="text/css" href="css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="css/base-css.css" />
+    <link rel="stylesheet" type="text/css" href="css/review-comment.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+    <script src="js/review-comment.js"></script>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+    <div class="banner">
+        <img src = "images/header.jpg">
+    </div>
+
+    <div class="profile-wrapper">
+        <div class="container">
+            <aside class="profile">
+                
+                <div class="profile-pic">
+                    <label class="img-label" for="file">
+                        <span class="change-image">Change Image</span>
+                    </label>
+                    <input id="file" type="file" onchange="loadPFP(event)">
+                    <img src="<%= user.pfp %>" id="main-pfp" alt="pfp">
+                </div>
+                
+
+                <h1><%= user.fName %><%= user.lName %></h1>
+                <span>@<%= user.username %></span>
+                <p><strong><i>Place</i></strong> <a href = "/condoprofile?name=<%= encodeURIComponent(user.uCondo) %>"><%= user.uCondo %></a></p>
+                <p><%= user.bio %></p>
+            </aside>
+
+            <section class="timeline">
+                <nav>
+                    <a href="#" onclick="openTab('reviews', this)" class="tab-button active" data-tab="reviews">Reviews</a>
+                    <a href="#" onclick="openTab('comments', this)" class="tab-button" data-tab="comments">Comments</a>
+                </nav>
+
+                <div class="tab-content" id="reviews" style="display: block;">
+
+                    <!-- <div class = "review-container"> -->
+                        <%- include('./partials/userReview.ejs') %>
+                    <!-- </div> -->
+                </div>
+
+                <div class="tab-content" id="comments">
+                    <!-- <div class = "comment-container"> -->
+                        <%- include('./partials/userReview.ejs') %>
+                    <!-- </div> -->
+                </div>
+            </section>
+        
+        </div>
+    </div>
+
+    <script src = "js/profile.js"></script>
+
+</body>
+</html>

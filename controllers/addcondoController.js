@@ -11,8 +11,6 @@ async function addCondoController(req, res){
     }
 }
 
-
-
 async function postAddCondo(req, res){
 
     try {
@@ -34,13 +32,12 @@ async function postAddCondo(req, res){
         console.log('New Condo: ', response);
 
         res.redirect(`/condoprofile?name=${newCondo.cName}`);
-    } catch (error) {
+    } catch {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
     
 }
-
 
 module.exports = {
     addCondoController,

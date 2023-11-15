@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile | Taft Tower Talk</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/account.css">
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+    <div class="container">
+        <aside class="profilenav">
+            <div class="sidenav">
+                <a href="#personal-info">Personal Information</a>
+                <a href="#account-details">Account Details</a>
+                <a href="#additional-info">Additional Information</a>
+            </div>
+        </aside>
+        <section class="profile-details">
+            <div class="form">
+                <header id="edit-profile-header"><h2>Edit Profile</h2></header>
+                <form action="#" id="edit-profile-form" onsubmit="editProfile (event)">
+                    <section id="personal-info">
+                        <label for="first-name">First Name</label>
+                        <input id="first-name" type="text" placeholder="Enter your first name..." required>
+                        <label for="last-name">Last Name</label>
+                        <input id="last-name" type="text" placeholder="Enter your last name..." required>
+                    </section>
+                    <section id="account-details">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" placeholder="kazuha@gmail.com" readonly>
+                        <label for="old-username">Current Username</label>
+                        <input id="old-username" type="text" placeholder="@lesserafim2003" readonly>
+                        <label for="username">New Username</label>
+                        <input id="username" type="text" placeholder="Enter your username here..." required>
+                    </section>
+                    <section id="additional-info">
+                        <label for="condo">Condominium/Place</label>
+                        <div class="custom-select">
+                            <select required>
+                                <option value="condo-placeholder" id="placeholder">Select Place:</option>
+                                <option value="condo1">Manila Residences</option>
+                                <option value="condo2">Studio Zen</option>
+                                <option value="condo3">WH Taft Residences</option>
+                                <option value="condo4">One Archer's Place</option>
+                                <option value="condo-default">None</option>
+                            </select>
+                        </div>
+                        <label for="bio">User Bio (400 character limit)</label>
+                        <textarea id="bio" placeholder="Write a short bio..." maxlength="400" style="resize: none;"></textarea>
+                    </section>
+                    <input type="submit" class="button" value="Save">
+                </form>
+            </div>
+        </section>
+    </div>
+
+<script src="js/account.js"></script>
+
+</body>
+</html>

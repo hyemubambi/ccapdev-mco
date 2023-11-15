@@ -32,26 +32,7 @@
     </head>
     <body>
         <!-- NAVIGATION BAR -->
-        <div id="navbar-visitor">
-            <a href="homepage-user.html"><img src="images/logo.png" alt="logo" width="100px"/></a>
-            <div id="searchbar">
-                <form action="SearchResult-user.html" method="get">
-                    <input type="text" placeholder="Search...">
-                </form>
-            </div>
-            <div id="navbar-links">
-                <a href="aboutpage-user.html">About</a>
-                <a href="/condolist">Condo List</a>
-                <div class="dropdown">
-                <a href="#">Welcome Back, User</a>
-                <div class="dropdown-content">
-                    <a href="profile.html">Profile</a>
-                    <a href="account.html">Account Settings</a>
-                    <a href="homepage-visitor.html">Logout</a>
-                  </div>
-                </div>
-            </div>
-        </div>
+        <%- include('./partials/navbar.ejs') %>
         <!-- NAVIGATION BAR -->
 
         <div class="container">

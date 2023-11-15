@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup | Taft Tower Talk</title>
+        <link rel="icon" type="image/x-icon" href="images/logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+        <link rel="stylesheet" type="text/css" media="all" href="css/loginsignup.css">
+    </head>
+    <body>
+        <!-- NAVIGATION BAR -->
+        <%- include('./partials/navbar.ejs') %>
+        <!-- NAVIGATION BAR -->
+
+        <div class="container">
+            <div class="form">
+                <header><h2>Register</h2></header>
+                <form action="/register" method = "post" id = "signup-form" onsubmit = "signup(event)">
+                    <input id = "email-input" name = "Email" type="email" placeholder="Enter your email here..." required>
+                    <input id = "password-input" name = "password" type="password" placeholder="Create a password..." required>
+                    <div class = "pwd-content"></div>
+                    <input id = "username" name = "username" type="text" placeholder="Enter Username"  required>
+                    <input type="submit" class="button" value="SIGN UP">
+                </form>
+                <div class="login">
+                    <span class="login">Already have an account?
+                    <a href = "/login">Log in here.</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <script src = "javascript/signup.js"></script>
+    </body>
+</html>
