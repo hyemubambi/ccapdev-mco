@@ -1,5 +1,6 @@
 const Condo = require('../models/condo.js');
 const Review = require('../models/review.js');
+const Comment = require('../models/comment.js');
 
 async function condoprofileController(req, res) {
     try {
@@ -8,8 +9,11 @@ async function condoprofileController(req, res) {
         const condo = await Condo.findOne({cName: condoName});
         console.log('condo: ', condo);
         if(condo){
-            const reviews = await Review.find({condo: condoName});
-            res.render('condoprofile', {condo, reviews});
+            const reviews = await Review.find({ condo: condoName });
+            const reviewIds = reviews.map(review => review._id);
+            const comments = await Comment.find({ review: { $in: reviewIds } });
+
+            res.render('condoprofile', { condo, reviews, comments });
         }
     } catch {
         console.error(error);
@@ -52,7 +56,41 @@ async function submitReview(req, res) {
     }
 }
 
+async function submitComment(req, res) {
+    try {
+        // Log the request body to see what data is being received
+        const {commentText} = req.query;
+        const {commentUsername} = req.query;
+        const {reviewId} =req.query;
+        const {commentCondo} = req.query;
+        const commentDate = new Date().toISOString();
+
+        // Create a new review instance
+        const newComment = new Comment({
+            text: commentText,
+            username: commentUsername,
+            review: reviewId,
+            condo: commentCondo,
+            date: commentDate,
+            likes: 0,
+            dislikes: 0,
+        });
+
+        // Save the review to the database
+        const savedComment = await newComment.save();
+
+        const encodedCondo = encodeURIComponent(savedComment.condo);
+
+        // Redirect to the condo profile page with the saved review's condo name
+        res.redirect(`/condoprofile?name=${encodedCondo}&reviewId=${savedComment.review}`);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
 module.exports = {
     condoprofileController,
-    submitReview
+    submitReview,
+    submitComment
 };

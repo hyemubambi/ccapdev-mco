@@ -10,11 +10,16 @@ const CommentSchema = new mongoose.Schema({
         required: true,
     },
     review: {
+        type: mongoose.Schema.Types.ObjectId,  // Change this line
+        ref: 'review',
+        required: true,
+    },
+    condo: {
         type: String,
         required: true,
     },
     date: {
-        type: String,
+        type: Date,
         required: true,
     },
     likes: {

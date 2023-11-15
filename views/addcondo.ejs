@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Taft Tower Talk </title>
+        <link rel="icon" type="image/x-icon" href="images/logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+        <link rel="stylesheet" type="text/css" href="css/addcondo.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var imageInput = $('#image');
+                var imageButton = $('.custom-file-upload');
+
+                imageInput.on('change', function () {
+                    if (imageInput[0].files.length > 0) {
+                        imageButton.text(imageInput[0].files[0].name);
+                    }
+                });
+
+                $('button[type="submit"]').on('click', function (e) {
+                    if (imageButton.text() === "Choose Image") {
+                        $('#errorText').text(" There is no image uploaded");
+                        return;
+                    }
+
+                    $form[0].reset();
+                    imageButton.text('Choose Image');
+                    $('#errorText').text('');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <!-- NAVIGATION BAR -->
+        <div id="navbar-visitor">
+            <a href="homepage-user.html"><img src="images/logo.png" alt="logo" width="100px"/></a>
+            <div id="searchbar">
+                <form action="SearchResult-user.html" method="get">
+                    <input type="text" placeholder="Search...">
+                </form>
+            </div>
+            <div id="navbar-links">
+                <a href="aboutpage-user.html">About</a>
+                <a href="/condolist">Condo List</a>
+                <div class="dropdown">
+                <a href="#">Welcome Back, User</a>
+                <div class="dropdown-content">
+                    <a href="profile.html">Profile</a>
+                    <a href="account.html">Account Settings</a>
+                    <a href="homepage-visitor.html">Logout</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!-- NAVIGATION BAR -->
+
+        <div class="container">
+            <header><h2>Add a Condominium</h2></header>
+            <div class="form">
+                <form action="/addcondo" method="post" enctype="multipart/form-data">
+                    <!-- Name (String) -->
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br>
+
+                    <!-- Description (String) -->
+                    <label for="description">Description:</label><br>
+                    <textarea id="description" name="description" rows="4" required></textarea><br>
+
+                    <!-- Image (Image) -->
+                    <label for="image" class="custom-file-upload">Choose Image</label> <span id="errorText"></span> <br>
+                    <input type="file" id="image" name="image" accept="image/*" required><br>
+
+                    <!-- Budget (Numbers, divided into two parts) -->
+                    <label for="budgetLower">Budget Lower Range:</label><br>
+                    <input type="number" id="budgetLower" name="budgetLower" required><br>
+
+                    <label for="budgetUpper">Budget Upper Range:</label><br>
+                    <input type="number" id="budgetUpper" name="budgetUpper" required><br>
+
+                    <button type="submit" class="button">Add</button>
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>
