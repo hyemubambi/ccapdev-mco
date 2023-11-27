@@ -36,10 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // import and configure your user model
-const User = require('../models/user.js');
-
-// use passport-local-mongoose plugin for user schema
-User.plugin(passportLocalMongoose);
+const User = require('./models/user.js');
 
 // configure passport strategies
 passport.use(User.createStrategy());
