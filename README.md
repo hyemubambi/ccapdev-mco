@@ -6,13 +6,18 @@
 - Ureta, Therese
 
 **INSTALLED NPM Packages**
+- npm init
 - npm install express
 - npm install body-parser
 - npm install -g nodemon
 - npm install ejs
 - npm install mongoose
 - npm install --save multer
-- npm i dotenv
+- npm i dotenv
+- npm i passport
+- npm i passport-local
+- npm i passport-local-mongoose
+- npm i express-session
 
 STEPS
 1) Unzip folder
