@@ -22,6 +22,7 @@ const {loginController} = require('../controllers/loginController');
 const {postLogin} = require('../controllers/loginController');
 const editProfileController = require('../controllers/editProfileController');
 const {renderCondoPanel} = require('../controllers/condopanelController');
+const condoguestController = require('../controllers/condoguestController');
 
 // GET FUNCTIONS
 
@@ -48,6 +49,7 @@ router.post('/login', postLogin);
 router.get('/editprofile', editProfileController);
 
 router.get('/renderCondoPanel', renderCondoPanel);
+router.get('/condoguest', condoguestController);
 
 router.use((req, res, next) => {
     const err = new Error('Not Found');

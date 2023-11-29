@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> <%= condo.cName %> | Taft Tower Talk</title>
+        <link rel="icon" type="image/x-icon" href="images/logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+        <link rel="stylesheet" type="text/css" media="all" href="css/condoprofile-css.css">
+        <style>
+            h3:hover {
+                color: #0056b3;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <!-- NAVIGATION BAR -->
+        <%- include('./partials/navbar.ejs') %>
+        <!-- NAVIGATION BAR -->
+
+        <!-- CONDO HEADER-->
+        <div class = "condo-profile">
+            <!-- add photo here --> 
+            <img class="condo-image" src="<%= condo.photo %>" alt="condo photo" />
+            <div class = "condo-contents">  
+                <div class = "condo-header">
+                    <div class = "condo-name-rating">
+                        <h1 class = "condo-name"><%= condo.cName %></h1>
+                        <p class = "condo-rating"><%= condo.rating %> (<%= condo.nReviews %>)</p>
+                    </div>
+                    <div class = "condo-budget">
+                        <h1>Budget: <%= condo.lRange %> - <%= condo.hRange %></h1>
+                    </div>
+                </div>  
+
+                <div class = "condo-description">
+                    <p> <%= condo.description %>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONDO HEADER-->
+       
+        <!-- REVIEW BOX-->
+        <div class = "review-header">
+            <hr>
+            <h1>REVIEWS</h1>
+            <hr>
+        </div>
+        <!-- REVIEW BOX-->
+
+        <!-- REVIEWS-->
+        <div class="review-container ">
+            <h2> You must be a registered user to view the reviews! </h2>
+            <a href = "/register"><h3> REGISTER NOW </h3> </a>
+        </div>
+        <!-- REVIEWS-->
+
+    </body>
+</html>
