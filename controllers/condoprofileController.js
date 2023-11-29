@@ -48,6 +48,18 @@ async function submitReview(req, res) {
         const savedReview = await newReview.save();
         console.log('Saved Review:', savedReview);
 
+        const filter = { cName: savedReview.condo };
+        const update = { $inc: { nReviews: 1 } };
+        await Condo.updateOne(filter, update);
+
+        // Calculate the average rating for the condo
+        const reviewsForCondo = await Review.find({ condo: reviewCondo });
+        const totalRatings = reviewsForCondo.reduce((sum, review) => sum + review.rating, 0);
+        const averageRating = totalRatings / reviewsForCondo.length;
+
+        // Update the condo's average rating in the database
+        await Condo.updateOne({ cName: reviewCondo }, { $set: { rating: averageRating } });
+
         // Redirect to the condo profile page with the saved review's condo name
         res.redirect(`/condoprofile?name=${savedReview.condo}`);
     } catch {
