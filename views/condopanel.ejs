@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Condo Panel | Taft Tower Talk</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/account.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var imageInput = $('#image');
+            var imageButton = $('.custom-file-upload');
+
+            imageInput.on('change', function () {
+                if (imageInput[0].files.length > 0) {
+                    imageButton.text(imageInput[0].files[0].name);
+                }
+            });
+
+            $('button[type="submit"]').on('click', function (e) {
+                if (imageButton.text() === "Choose Image") {
+                    $('#errorText').text(" There is no image uploaded");
+                    return;
+                }
+
+                $form[0].reset();
+                imageButton.text('Choose Image');
+                $('#errorText').text('');
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <!-- NAVIGATION BAR -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NAVIGATION BAR -->
+
+    <!-- CONDO PANEL -->
+    <div class="container">
+        <aside class="profilenav">
+            <div class="sidenav">
+                <a href="#add-condo">Add a Condo</a>
+                <a href="#edit-condo">Edit a Condo</a>
+                <a href="#delete-condo">Delete a Condo</a>
+            </div>
+        </aside>
+        <section class="profile-details">
+            <div class="form">
+                <header id="edit-profile-header"><h2>Edit Profile</h2></header>
+                <form action="#" id="edit-profile-form" onsubmit="editProfile (event)">
+                    <section id="add-condo">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Enter the condo name..." required>
+                        
+                        <label for="description">Description</label>
+                        <input id="description" name="description" type="text" placeholder="Enter the condo's description..." required>
+
+                        <label for="image" class="custom-file-upload">Choose Image</label> <span id="errorText"></span>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+
+                        <div style="display: flex; flex-direction: row; gap: 8px;">
+                            <label for="budgetLower">Budget Lower Range</label>
+                            <input id="budgetLower" name="budgetLower" type="number" required>
+
+                            <label for="budgetUpper">Budget Higher Range</label>
+                            <input id="budgetUpper" name="budgetUpper" type="number" required>
+                        </div>
+                        <input type="submit" class="button" value="Save">
+                    </section>
+                    <section id="edit-condo">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Edit the condo name...">
+                        
+                        <label for="description">Description</label>
+                        <input id="description" name="description" type="text" placeholder="Edit the condo's description...">
+
+                        <label for="image" class="custom-file-upload">Choose Image</label> <span id="errorText"></span>
+                        <input type="file" id="image" name="image" accept="image/*">
+
+                        <div style="display: flex; flex-direction: row; gap: 8px;">
+                            <label for="budgetLower">Budget Lower Range</label>
+                            <input id="budgetLower" name="budgetLower" type="number">
+
+                            <label for="budgetUpper">Budget Higher Range</label>
+                            <input id="budgetUpper" name="budgetUpper" type="number">
+                        </div>
+                        <input type="submit" class="button" value="Save">
+                    </section>
+                    <section id="delete-condo">
+                        <label for="condo">Condominium/Place</label>
+                        <div class="custom-select">
+                            <select required>
+                                <option value="condo-placeholder" id="placeholder">Select Place:</option>
+                                <option value="condo1">Manila Residences</option>
+                                <option value="condo2">Studio Zen</option>
+                                <option value="condo3">WH Taft Residences</option>
+                                <option value="condo4">One Archer's Place</option>
+                                <option value="condo-default">None</option>
+                            </select>
+                        </div>
+                        <input type="submit" class="button" value="Save">
+                    </section>
+                    <!-- <input type="submit" class="button" value="Save"> -->
+                </form>
+            </div>
+        </section>
+    </div>
+
+<script src="js/administercondo.js"></script>
+
+</body>
+</html>
