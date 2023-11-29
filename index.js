@@ -26,7 +26,7 @@ app.use(
         resave: false,
         saveUninitialized: true,
     })
-);
+ );
 
 // initialize passport and session management
 app.use(passport.initialize());
@@ -57,16 +57,24 @@ passport.use(new LocalStrategy({
  }));
  
  passport.serializeUser(function(user, done) {
-    done(null, user.id); // Using the user's ID for serialization
- });
- 
- passport.deserializeUser(function(id, done) {
-    User.findById(id)
-        .then(user => done(null, user))
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(req, id, done) {
+    User.findById(id).exec()
+        .then(user => {
+            req.session.user = user; // Set req.session.user to the found user
+            done(null, user);
+        })
         .catch(err => done(err));
  });
- 
 
+ 
+ app.use((req, res, next) => {
+    res.locals.loggedIn = req.session.user ? true : false;
+    res.locals.admin = req.session.user && req.session.user.admin ? true : false;
+    next();
+  });
 
 // routes
 app.use('/', routes);
@@ -76,7 +84,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.status || 500).render('error', { err, error: err.message });
 });
-
 
 // populating data functions
 // addData.populateCondo();
