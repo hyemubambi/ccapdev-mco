@@ -6,7 +6,11 @@
         <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
         <link rel="stylesheet" type="text/css" href="css/condolist.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-        
+        <style>
+            body {
+                background-color: rgba(233, 239, 228, 0.793)
+            }
+        </style>
     </head>
     <body>
           <!-- NAVIGATION BAR -->
@@ -16,32 +20,72 @@
         <div class="condolist-main-body">
             <div class="lower-part">
                 <h1>List of Condominiums</h1>
+
                 <div id="sort-by">
-                    SORT BY...
-                    <div class="dropdown-content" id="sort-condo">
-                        <div id="Sort-by-rating">Sort by Ratings</div>
-                        <div id="Sort-by-budget">Sort by Budget</div>
+                    <div class="sorting-section">
+                        <div class="sorting-options">
+                        
+                        <div class="sort-type">
+                            <div class="sort-option">
+                                <h4>Sort Type</h4>
+                                <select id="sortType">
+                                <option value="rating">Rating</option>
+                                <option value="budget">Budget</option>
+                                </select>
+                            </div>
+                      
+                            <div class="sort-option">
+                                <h4>Sort Order</h4>
+                                <select id="sortOrder">
+                                <option value="asc">Ascending</option>
+                                <option value="desc">Descending</option>
+                                </select>
+                            </div>
+                        </div>    
+                      
+                        <div class="sort-range">
+                            <div class="sort-option">
+                                <h4>From</h4>
+                                <input type="number" id="rangeFrom" placeholder="Min" />
+                            </div>
+                      
+                            <div class="sort-option">
+                                <h4>To</h4>
+                                <input type="number" id="rangeTo" placeholder="Max" />
+                            </div>
+                        </div>
+
+                        <div class="sort-option">
+                            <button id="applySorting">Apply Sorting</button>
+                        </div>
+
+                        </div>
                     </div>
+                      
                 </div>
+
                 <div class="condo-list" id="condo-sorting">
                     
 
                     <% condos.forEach(condo => { %>
-                        <div class="recommended-condo" id="<%= condo.rating %>">
+                        <div class="recommended-condo" data-rating="<%= condo.rating %>" data-budget-low="<%= condo.lRange %>" data-budget-high="<%= condo.hRange %>">
                             <div class="picture">
-                                <a href="/condoprofile?name=<%= encodeURIComponent(condo.cName) %>"><img src="<%=condo.photo%>" alt="condo photo" /></a>
+                                <a href="/condoprofile?name=<%= encodeURIComponent(condo.cName) %>">
+                                    <img src="<%= condo.photo %>" alt="condo photo" />
+                                </a>
                             </div>
                             <div class="description">
                                 <span style="font-weight: bold;"> Name:</span> <%= condo.cName %><br>
                                 <span style="font-weight: bold;"> Rating:</span> <%= condo.rating %><br>
-                                <span class="budget" id="<%= condo.lRange %>" style="font-weight: bold;"> Budget:</span> <%= condo.lRange %> to <span class="<%= condo.hRange %>"><%= condo.hRange %></span><br>
+                                <span style="font-weight: bold;"> Budget:</span>
+                                <span class="budget">
+                                    <span class="budget-low"><%= condo.lRange %></span> to 
+                                    <span class="budget-high"><%= condo.hRange %></span>
+                                </span><br>
                             </div>
                         </div>
-                        
-                        
-                        <%}) 
-                        
-                    %>
+                    <% }) %>
+                    
 
 
                 </div>

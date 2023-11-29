@@ -1,61 +1,78 @@
-$(document).ready(function(){
+function hideShowItems() {
+  var rangeFrom = parseInt($("#rangeFrom").val());
+  var rangeTo = parseInt($("#rangeTo").val());
+  var sortType = $("#sortType").val();
 
+  if (!isNaN(rangeFrom) && !isNaN(rangeTo)) {
+    $(".recommended-condo").hide();
+
+    $(".recommended-condo").each(function() {
+      var rating = parseFloat($(this).data('rating'));
+      var budgetLow = parseFloat($(this).data('budget-low'));
+      var budgetHigh = parseFloat($(this).data('budget-high'));
+
+      if (sortType === 'rating') {
+        if (rating >= rangeFrom && rating <= rangeTo) {
+          $(this).show();
+        }
+      } else if (sortType === 'budget') {
+        if (budgetLow >= rangeFrom && budgetHigh <= rangeTo) {
+          $(this).show();
+        }
+      }
+    });
+  } else {
+    $(".recommended-condo").show();
+  }
+}
+
+$(document).ready(function() {
     function sortByCondoName() {
-        var list = $("#condo-sorting");
-        var listitems = list.find(".recommended-condo").get();
-        listitems.sort(function (a, b) {
-            var compA = $(a).find(".condo-name").text().toUpperCase();
-            var compB = $(b).find(".condo-name").text().toUpperCase();
-            return compA.localeCompare(compB); // Use localeCompare for string comparison
-        });
-        $.each(listitems, function (idx, itm) {
-            list.append(itm);
-        });
+      var list = $("#condo-sorting");
+      var listitems = list.find(".recommended-condo").get();
+      listitems.sort(function(a, b) {
+        var compA = $(a).find(".condo-name").text().toUpperCase();
+        var compB = $(b).find(".condo-name").text().toUpperCase();
+        return compA.localeCompare(compB);
+      });
+      $.each(listitems, function(idx, itm) {
+        list.append(itm);
+      });
     }
-
+  
     sortByCondoName();
-
-    $("#Sort-by-rating").click(function(){
+  
+    $("#applySorting").click(function() {
+      var sortType = $("#sortType").val();
+      var sortOrder = $("#sortOrder").val();
+  
+      var list = $("#condo-sorting");
+      var listitems = list.children(".recommended-condo").get();
+  
+      listitems.sort(function(a, b) {
+        var compA, compB;
+  
+        if (sortType === 'rating') {
+          compA = parseFloat($(a).data('rating'));
+          compB = parseFloat($(b).data('rating'));
+        } else if (sortType === 'budget') {
+          compA = parseFloat($(a).data('budget-low'));
+          compB = parseFloat($(b).data('budget-low'));
+        }
+  
+        if (sortOrder === 'asc') {
+          return compA - compB;
+        } else {
+          return compB - compA;
+        }
         
-        var list = $("#condo-sorting");
-        var listitems = list.children(".recommended-condo").get();
-        listitems.sort(function(a,b){
-            var compA = parseFloat($(a).attr('id'));
-            var compB = parseFloat($(b).attr('id'));
-            return (compA > compB) ? -1: (compA < compB) ? 1:0;
-        });
-        $.each(listitems, function(idx, itm){
-            list.append(itm);
-        })
+      });
+
+      hideShowItems();
+  
+      $.each(listitems, function(idx, itm) {
+        list.append(itm);
+      });
     });
-
-    $("#Sort-by-budget").click(function(){
-       
-        var list = $("#condo-sorting");
-        var budget = list.find(".budget").get();
-        budget.sort(function(a,b){
-            var compA = parseFloat($(a).attr('id'));
-            var compB = parseFloat($(b).attr('id'));
-            console.log("A: " + compA);
-            console.log("B: " + compB);
-            var res = (compA < compB) ? -1: (compA > compB) ? 1:0;
-            console.log("Lower: " + res);
-
-            if(res === 0){
-                var highA = parseFloat($(a).next().attr('class'));
-                var highB = parseFloat($(b).next().attr('class'));
-                console.log("High A: " + highA);
-                console.log("High B: " + highB);
-                var res = (highA < highB) ? -1: (highA > highB) ? 1:0;
-                console.log("Upper: " + res);
-            }
-
-            return res;
-        });
-        $.each(budget, function(idx, itm){
-            list.append($(itm).parents(".recommended-condo"));
-        });
-    });
-    
-});
-
+  });
+  
