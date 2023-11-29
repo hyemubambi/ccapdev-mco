@@ -2,16 +2,12 @@
 require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const ejs = require("ejs");
 const session = require("express-session");
 const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
 
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
 const addData = require('./add_data.js');
-const path = require('path');
 
 const app = express();
 
@@ -27,7 +23,7 @@ app.use(
     session({
         secret: process.env.SECRET,
         resave: false,
-        saveUninitialized: false,
+        saveUninitialized: true,
     })
 );
 
