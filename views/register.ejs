@@ -15,10 +15,12 @@
             <div class="form">
                 <header><h2>Register</h2></header>
                 <form action="/register" method = "post" id = "signup-form" onsubmit = "signup(event)">
-                    <input id = "email-input" name = "Email" type="email" placeholder="Enter your email here..." required>
+                    <input id = "email-input" name = "email" type="email" placeholder="Enter your email here..." required>
                     <input id = "password-input" name = "password" type="password" placeholder="Create a password..." required>
                     <div class = "pwd-content"></div>
-                    <input id = "username" name = "username" type="text" placeholder="Enter Username"  required>
+                    <input id = "username" name = "username" type="text" placeholder="Enter an username..."  required>
+                    <input id = "fName" name = "fName" type="text" placeholder="Enter your first name..."  required>
+                    <input id = "lName" name = "lName" type="text" placeholder="Enter your last name..."  required>
                     <input type="submit" class="button" value="SIGN UP">
                 </form>
                 <div class="login">

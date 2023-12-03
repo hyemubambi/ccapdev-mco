@@ -3,8 +3,6 @@ require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const passport = require("passport");
-const LocalStrategy = require('passport-local').Strategy;
 
 const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
@@ -13,7 +11,7 @@ const addData = require('./add_data.js');
 const app = express();
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static("public"));
 
 // connect to mongodb database
@@ -24,57 +22,9 @@ app.use(
     session({
         secret: process.env.SECRET,
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: false,
     })
  );
-
-// initialize passport and session management
-app.use(passport.initialize());
-app.use(passport.session());
-
-// import and configure your user model
-const User = require('./models/user.js');
-
-// configure passport strategies
-// passport.use(User.createStrategy());
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-
-passport.use(new LocalStrategy({
-    usernameField: 'username', // Assuming 'email' is the field for username
-    passwordField: 'password' // Assuming 'password' is the field for the password
- },
- function(username, password, done) {
-    // Logic to find and authenticate user based on email and password
-    User.findOne({ username: username })
-        .then(user => {
-            if (!user || !user.validPassword(password)) { // Assuming a method to check password validity
-                return done(null, false, { message: 'Incorrect username or password.' });
-            }
-            return done(null, user);
-        })
-        .catch(err => done(err));
- }));
- 
- passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function(req, id, done) {
-    User.findById(id).exec()
-        .then(user => {
-            req.session.user = user; // Set req.session.user to the found user
-            done(null, user);
-        })
-        .catch(err => done(err));
- });
-
- 
- app.use((req, res, next) => {
-    res.locals.loggedIn = req.session.user ? true : false;
-    res.locals.admin = req.session.user && req.session.user.admin ? true : false;
-    next();
-  });
 
 // routes
 app.use('/', routes);

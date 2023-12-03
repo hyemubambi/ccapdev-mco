@@ -1,12 +1,14 @@
-const passport = require('passport');
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 async function loginController(req, res) {
     try {
         res.render('login', {
-            email: '',
+            username: '',
             password: '',
             error:'',
+            loggedIn: false,
+            user: null
         });
     } catch {
         console.error(error);
@@ -14,35 +16,34 @@ async function loginController(req, res) {
     }
 }
 
-async function postLogin(req, res){
-
+async function postLogin(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
+    
     try {
-        
-        const user = new User({
-            username: req.body.username,
-            password: req.body.password,
-        });
-        
-        req.login(user, function (err) {
-            if (err) {
-              console.log(err);
-              res.render('login', {
-                username: req.body.username,
-                password: req.body.password,
-                error : 'Incorrect username/password'
-            });
-            } else {
-              passport.authenticate("local")(req, res, function () {
-                res.redirect(`/userprofile?username=${user.username}`);
-              });
-            }
-        });
+        const user = await User.findOne({ username: username });
 
-    } catch (error) {
-        console.error('Error:', error);
+        const validPassword = await bcrypt.compare(password, user.password);
+
+        if (!user || !validPassword) {
+            return res.render('login', {
+                username: '',
+                password: '',
+                error:'Invalid username or password',
+                loggedIn: false,
+                user: null
+            });
+        }
+
+        req.session.username = username;
+        res.redirect(`/userprofile?username=${username}`, {
+            loggedIn: true,
+            user: user,
+        });
+    } catch {
+        console.error(error);
         res.status(500).send('Internal Server Error');
     }
-    
 }
 
 

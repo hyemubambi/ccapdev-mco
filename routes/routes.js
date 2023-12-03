@@ -23,6 +23,7 @@ const {postLogin} = require('../controllers/loginController');
 const editProfileController = require('../controllers/editProfileController');
 const {renderCondoPanel} = require('../controllers/condopanelController');
 const condoguestController = require('../controllers/condoguestController');
+const logoutController = require('../controllers/logoutController');
 
 // GET FUNCTIONS
 
@@ -51,10 +52,21 @@ router.get('/editprofile', editProfileController);
 router.get('/renderCondoPanel', renderCondoPanel);
 router.get('/condoguest', condoguestController);
 
-router.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+router.get('/logout', logoutController);
+
+router.use((err, req, res, next) => {
+    if (err.status === 404) {
+        res.status(404).send('Not Found');
+    } else {
+        // Pass the error to the next error-handling middleware
+        next(err);
+    }
+});
+
+// Additional error handling middleware for other types of errors
+router.use((err, req, res, next) => {
+    // Handle other types of errors here or send a generic error response
+    res.status(err.status || 500).send('Internal Server Error');
 });
 
 module.exports = router;

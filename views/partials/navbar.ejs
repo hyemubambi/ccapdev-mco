@@ -9,7 +9,7 @@
         <a href="aboutpage">About</a>
         <a href="condolist">Condo List</a>
 
-        <% if (loggedIn) { %>
+        <% if (!loggedIn) { %>
             <a href="login">Login/Register</a>
          <% } else { %>
             <div class="dropdown">
@@ -20,7 +20,7 @@
                         <a href="renderCondoPanel">Condo Panel</a>
                     <% } %>
                     <a href="/editprofile?username=<%= user.username %>">Account Settings</a>
-                    <a href="homepage">Logout</a>
+                    <a href="logout">Logout</a>
                 </div>
             </div>
          <% } %>

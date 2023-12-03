@@ -17,7 +17,7 @@
                 <form action="/login" method = "post" id = "login-form" onsubmit = "login(event)">
                     <input id="username-input" name="username" type="text" placeholder="Enter username here..." required>
                     <input id="password-input" name="password" type="password" placeholder="Enter password here..." required>
-                    <p class = "form-warning" id = "login-warning"></p>
+                    <p class = "form-warning" id = "login-warning"><%= error %></p>
                     <input type="submit" class="button" value="LOG IN">
                 </form>
                 <div class="signup">

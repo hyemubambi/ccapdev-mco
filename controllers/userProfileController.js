@@ -27,7 +27,7 @@ async function userProfileController(req, res) {
         const condo = await Condo.findOne({ cName: uCondo });
 
         if (condo) {
-            res.render('userprofile', { user, condo, reviews: userReviews, comments: reviewsWithUserComments, loggedIn: res.locals.loggedIn, admin: res.locals.admin  });
+            res.render('userprofile', { user, condo, reviews: userReviews, comments: reviewsWithUserComments });
         }
     } catch (error) {
         // Properly log the error
