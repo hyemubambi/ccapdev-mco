@@ -10,24 +10,38 @@ async function condoprofileController(req, res) {
         if (req.session && req.session.user) {
             loggedIn = true;
             user = req.session.user;
-        }
 
-        const condoName = req.query.name;
-        console.log(condoName);
-        const condo = await Condo.findOne({cName: condoName});
-        console.log('condo: ', condo);
-        if(condo){
-            const reviews = await Review.find({ condo: condoName });
-            const reviewIds = reviews.map(review => review._id);
-            const comments = await Comment.find({ review: { $in: reviewIds } });
+            const condoName = req.query.name;
+            console.log(condoName);
+            const condo = await Condo.findOne({cName: condoName});
+            console.log('condo: ', condo);
+            if(condo){
+                const reviews = await Review.find({ condo: condoName });
+                const reviewIds = reviews.map(review => review._id);
+                const comments = await Comment.find({ review: { $in: reviewIds } });
 
-            res.render('condoprofile', {
-                condo,
-                reviews,
-                comments,
-                loggedIn,
-                user,
-            });
+                res.render('condoprofile', {
+                    condo,
+                    reviews,
+                    comments,
+                    loggedIn,
+                    user,
+                });
+            }
+        } else {
+
+            const condoName = req.query.name;
+            console.log(condoName);
+            const condo = await Condo.findOne({cName: condoName});
+            console.log('condo: ', condo);
+            if(condo){
+
+                res.render('condoguest', {
+                    condo,
+                    loggedIn,
+                    user,
+                });
+            }
         }
     } catch (error) {
         console.error(error);
