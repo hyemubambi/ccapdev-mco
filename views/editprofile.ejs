@@ -2,13 +2,42 @@
 <html>
 <head>
     <title>Edit Profile | Taft Tower Talk</title>
-    <link rel="icon" type="image/x-icon" href="images/logo.png">
-    <link rel="stylesheet" type="text/css" media="all" href="css/base-css.css">
-    <link rel="stylesheet" type="text/css" media="all" href="css/account.css">
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link rel="stylesheet" type="text/css" media="all" href="/css/base-css.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/css/account.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 <body>
-    <%- include('./partials/navbar.ejs') %>
+    <!-- NAVBAR -->
+    <div id="navbar-visitor">
+        <a href="/homepage"><img src="/images/logo.png" alt="logo" width="100px"/></a>
+        <div id="searchbar">
+            <form action="/searchResult" method="get">
+                <input type="text" name = "keyword" placeholder="Search...">
+            </form>
+        </div>
+        <div id="navbar-links">
+            <a href="/aboutpage">About</a>
+            <a href="/condolist">Condo List</a>
+    
+            <% if (!loggedIn) { %>
+                <a href="/login">Login/Register</a>
+             <% } else { %>
+                <div class="dropdown">
+                    <a href="#" name = "username">Welcome Back, <%= user.fName %></a>
+                    <div class="dropdown-content">
+                        <a href="/userprofile/<%= user.username %>">Profile</a>
+                        <% if (user.admin) { %>
+                            <a href="/renderCondoPanel">Condo Panel</a>
+                        <% } %>
+                        <a href="/editprofile/<%= user.username %>">Account Settings</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+             <% } %>
+        </div>
+    </div>
+    <!-- NAVBAR -->
 
     <div class="container">
         <aside class="profilenav">
@@ -24,15 +53,15 @@
                 <form action="#" id="edit-profile-form" onsubmit="editProfile (event)">
                     <section id="personal-info">
                         <label for="first-name">First Name</label>
-                        <input id="first-name" type="text" placeholder="Enter your first name..." required>
+                        <input id="first-name" type="text" placeholder="<%=user.fName%>" required>
                         <label for="last-name">Last Name</label>
-                        <input id="last-name" type="text" placeholder="Enter your last name..." required>
+                        <input id="last-name" type="text" placeholder="<%=user.lName%>" required>
                     </section>
                     <section id="account-details">
                         <label for="email">Email</label>
-                        <input id="email" type="email" placeholder="kazuha@gmail.com" readonly>
+                        <input id="email" type="email" placeholder="<%=user.email%>" readonly>
                         <label for="old-username">Current Username</label>
-                        <input id="old-username" type="text" placeholder="@lesserafim2003" readonly>
+                        <input id="old-username" type="text" placeholder="<%=user.username%>" readonly>
                         <label for="username">New Username</label>
                         <input id="username" type="text" placeholder="Enter your username here..." required>
                     </section>
@@ -57,7 +86,7 @@
         </section>
     </div>
 
-<script src="js/account.js"></script>
+<script src="/js/account.js"></script>
 
 </body>
 </html>

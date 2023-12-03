@@ -40,14 +40,14 @@ router.post('/addcondo', upload.single('image'), postAddCondo);
 router.get('/submitCondoReview', submitReview);
 router.get('/submitReviewComment', submitComment);
 
-router.get('/userprofile', userProfileController);
+router.get('/userprofile/:username', userProfileController);
 
 router.get('/register', registerController);
 router.post('/register', postRegister);
 router.get('/login', loginController);
 router.post('/login', postLogin);
 
-router.get('/editprofile', editProfileController);
+router.get('/editprofile/:username', editProfileController);
 
 router.get('/renderCondoPanel', renderCondoPanel);
 router.get('/condoguest', condoguestController);

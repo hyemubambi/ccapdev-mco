@@ -3,6 +3,18 @@ const bcrypt = require('bcrypt');
 
 async function registerController(req, res) {
     try {
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+            return res.render('homepage', {
+                loggedIn,
+                user
+            });
+        }
+
         res.render('register', {
             username: '',
             password: '',

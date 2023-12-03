@@ -4,6 +4,14 @@ const Comment = require('../models/comment.js');
 
 async function condoprofileController(req, res) {
     try {
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+        }
+
         const condoName = req.query.name;
         console.log(condoName);
         const condo = await Condo.findOne({cName: condoName});
@@ -13,7 +21,13 @@ async function condoprofileController(req, res) {
             const reviewIds = reviews.map(review => review._id);
             const comments = await Comment.find({ review: { $in: reviewIds } });
 
-            res.render('condoprofile', { condo, reviews, comments });
+            res.render('condoprofile', {
+                condo,
+                reviews,
+                comments,
+                loggedIn,
+                user
+            });
         }
     } catch {
         console.error(error);

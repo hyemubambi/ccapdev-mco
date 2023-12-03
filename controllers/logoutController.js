@@ -7,8 +7,7 @@ async function logoutController(req, res) {
                 console.error('Error destroying session:', err);
                 return res.status(500).send('Internal Server Error');
             }
-            // Redirect the user to the homepage or any other appropriate page after logout
-            res.redirect('/'); // Redirect to the homepage
+            res.redirect('/');
         });
     } catch {
         console.error(error);

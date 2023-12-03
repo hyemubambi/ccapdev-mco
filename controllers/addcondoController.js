@@ -4,7 +4,18 @@ const db = require('../models/db.js');
 
 async function addCondoController(req, res){
     try {
-        res.render('addcondo');
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+        }
+
+        res.render('addcondo', {
+            loggedIn,
+            user
+        });
     } catch {
         console.error(error);
         res.status(500).send('Internal Server Error');

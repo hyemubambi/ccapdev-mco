@@ -5,32 +5,32 @@ const Comment = require('../models/comment.js');
 
 async function userProfileController(req, res) {
     try {
-        const username = req.query.username;
-        console.log("username" + username);
+        let loggedIn = false;
+        let userSession = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            userSession = req.session.user;
+        }
+
+        const username = req.params.username;
+        console.log("username: " + username);
 
         // Find the user by username
         const user = await User.findOne({ username: username });
         if (!user) {
+            console.log('User not found');
             return res.status(404).send('User not found');
         }
 
-        console.log('user: ', user);
+        console.log('Retrieved user: ', user);
 
-        // Find reviews made by the user
-        const userReviews = await Review.find({ username: username });
-
-        // Find reviews that have comments made by the user
-        const userCommentedReviewIds = (await Comment.find({ username: username })).map(comment => comment.review);
-        const reviewsWithUserComments = await Review.find({ _id: { $in: userCommentedReviewIds } });
-
-        const uCondo = user.uCondo;
-        const condo = await Condo.findOne({ cName: uCondo });
-
-        if (condo) {
-            res.render('userprofile', { user, condo, reviews: userReviews, comments: reviewsWithUserComments });
-        }
+        res.render('userprofile', {
+                user,
+                loggedIn,
+                userSession
+        });
     } catch (error) {
-        // Properly log the error
         console.error(error);
         res.status(500).send('Internal Server Error');
     }

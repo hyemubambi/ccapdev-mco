@@ -1,19 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title><%= user.username %> | Taft Tower Talk</title>
-    <link rel="icon" type="image/x-icon" href="images/logo.png">
-    <link rel="stylesheet" type="text/css" href="css/profile.css" />
-    <link rel="stylesheet" type="text/css" href="css/base-css.css" />
-    <link rel="stylesheet" type="text/css" href="css/review-comment.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
-    <script src="js/review-comment.js"></script>
-</head>
+<html>
+    <head>
+        <title><%= user.username %> | Taft Tower Talk </title>
+        <link rel="icon" type="image/x-icon" href="/images/logo.png">
+        <link rel="stylesheet" type="text/css" media="all" href="/css/base-css.css">
+        <link rel="stylesheet" type="text/css" href="/css/profile.css">
+        <link rel="stylesheet" type="text/css" href="/css/review-comment.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+        <script src="/js/review-comment.js"></script>
+    </head>
 <body>
-    <%- include('./partials/navbar.ejs') %>
+    <div id="navbar-visitor">
+        <a href="/homepage"><img src="/images/logo.png" alt="logo" width="100px"/></a>
+        <div id="searchbar">
+            <form action="/searchResult" method="get">
+                <input type="text" name = "keyword" placeholder="Search...">
+            </form>
+        </div>
+        <div id="navbar-links">
+            <a href="/aboutpage">About</a>
+            <a href="/condolist">Condo List</a>
+    
+            <% if (!loggedIn) { %>
+                <a href="/login">Login/Register</a>
+             <% } else { %>
+                <div class="dropdown">
+                    <a href="#" name = "username">Welcome Back, <%= user.fName %></a>
+                    <div class="dropdown-content">
+                        <a href="/userprofile/<%= user.username %>">Profile</a>
+                        <% if (user.admin) { %>
+                            <a href="/renderCondoPanel">Condo Panel</a>
+                        <% } %>
+                        <a href="/editprofile/<%= user.username %>">Account Settings</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+             <% } %>
+        </div>
+    </div>
+    
 
     <div class="banner">
-        <img src = "images/header.jpg">
+        <img src = "/images/header.jpg">
     </div>
 
     <div class="profile-wrapper">
@@ -25,7 +53,7 @@
                         <span class="change-image">Change Image</span>
                     </label>
                     <input id="file" type="file" onchange="loadPFP(event)">
-                    <img src="<%= user.pfp %>" id="main-pfp" alt="pfp">
+                    <img src="/<%= user.pfp %>" id="main-pfp" alt="pfp">
                 </div>
                 
 
@@ -44,13 +72,13 @@
                 <div class="tab-content" id="reviews" style="display: block;">
 
                     <!-- <div class = "review-container"> -->
-                        <%- include('./partials/userReview.ejs') %>
+
                     <!-- </div> -->
                 </div>
 
                 <div class="tab-content" id="comments">
                     <!-- <div class = "comment-container"> -->
-                        <%- include('./partials/userReview.ejs') %>
+                        
                     <!-- </div> -->
                 </div>
             </section>
@@ -58,7 +86,7 @@
         </div>
     </div>
 
-    <script src = "js/profile.js"></script>
+    <script src = "/js/profile.js"></script>
 
 </body>
 </html>

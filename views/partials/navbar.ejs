@@ -15,11 +15,11 @@
             <div class="dropdown">
                 <a href="#" name = "username">Welcome Back, <%= user.fName %></a>
                 <div class="dropdown-content">
-                    <a href="/userprofile?username=<%= user.username %>">Profile</a>
+                    <a href="/userprofile/<%= user.username %>">Profile</a>
                     <% if (user.admin) { %>
                         <a href="renderCondoPanel">Condo Panel</a>
                     <% } %>
-                    <a href="/editprofile?username=<%= user.username %>">Account Settings</a>
+                    <a href="/editprofile/<%= user.username %>">Account Settings</a>
                     <a href="logout">Logout</a>
                 </div>
             </div>

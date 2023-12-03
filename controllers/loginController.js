@@ -3,14 +3,27 @@ const bcrypt = require('bcrypt');
 
 async function loginController(req, res) {
     try {
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+            return res.render('homepage', {
+                loggedIn,
+                user
+            });
+        }
+
         res.render('login', {
             username: '',
             password: '',
             error:'',
+            rememberMe:'',
             loggedIn: false,
             user: null
         });
-    } catch {
+    } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
@@ -19,6 +32,7 @@ async function loginController(req, res) {
 async function postLogin(req, res) {
     const username = req.body.username;
     const password = req.body.password;
+    const rememberMe = req.body.rememberMe;
     
     try {
         const user = await User.findOne({ username: username });
@@ -35,12 +49,13 @@ async function postLogin(req, res) {
             });
         }
 
-        req.session.username = username;
-        res.redirect(`/userprofile?username=${username}`, {
-            loggedIn: true,
-            user: user,
-        });
-    } catch {
+        if (rememberMe) {
+            req.session.cookie.maxAge = 1814400000;
+        }
+
+        req.session.user = user;
+        res.redirect(`homepage`);
+    } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
