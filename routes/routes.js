@@ -10,7 +10,6 @@ const homepageController = require('../controllers/homepageController');
 const searchController = require('../controllers/searchController');
 const condolistController = require('../controllers/condolistController');
 const aboutpageController = require('../controllers/aboutpageController');
-const {addCondoController} = require('../controllers/addcondoController');
 const {postAddCondo} = require('../controllers/addcondoController');
 const {condoprofileController} = require('../controllers/condoprofileController');
 const {submitReview} = require('../controllers/condoprofileController');
@@ -34,7 +33,6 @@ router.get('/condolist', condolistController);
 router.get('/aboutpage', aboutpageController);
 router.get('/condoprofile', condoprofileController);
 
-router.get('/addcondo', addCondoController);
 router.post('/addcondo', upload.single('image'), postAddCondo);
 
 router.get('/submitCondoReview', submitReview);

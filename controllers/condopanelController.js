@@ -10,6 +10,12 @@ async function renderCondoPanel(req, res) {
         if (req.session && req.session.user) {
             loggedIn = true;
             user = req.session.user;
+
+            if (!user.admin) {
+                return res.redirect('/homepage');
+            }
+        } else {
+            return res.redirect('/homepage');
         }
 
         res.render('condopanel', {

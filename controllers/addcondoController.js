@@ -1,27 +1,6 @@
 const Condo = require('../models/condo.js');
 const db = require('../models/db.js');
 
-
-async function addCondoController(req, res){
-    try {
-        let loggedIn = false;
-        let user = null;
-
-        if (req.session && req.session.user) {
-            loggedIn = true;
-            user = req.session.user;
-        }
-
-        res.render('addcondo', {
-            loggedIn,
-            user
-        });
-    } catch {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-}
-
 async function postAddCondo(req, res){
 
     try {
@@ -51,6 +30,5 @@ async function postAddCondo(req, res){
 }
 
 module.exports = {
-    addCondoController,
     postAddCondo
 };
