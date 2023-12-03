@@ -14,10 +14,8 @@
 - npm install mongoose
 - npm install --save multer
 - npm i dotenv
-- npm i passport
-- npm i passport-local
-- npm i passport-local-mongoose
 - npm i express-session
+- npm install bcrypt
 
 STEPS
 1) Unzip folder
