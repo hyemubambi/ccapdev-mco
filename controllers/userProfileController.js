@@ -6,29 +6,28 @@ const Comment = require('../models/comment.js');
 async function userProfileController(req, res) {
     try {
         let loggedIn = false;
-        let userSession = null;
+        let user = null;
 
         if (req.session && req.session.user) {
             loggedIn = true;
-            userSession = req.session.user;
+            user = req.session.user;
         }
 
         const username = req.params.username;
         console.log("username: " + username);
 
-        // Find the user by username
-        const user = await User.findOne({ username: username });
-        if (!user) {
+        const userProfile = await User.findOne({ username: username });
+        if (!userProfile) {
             console.log('User not found');
             return res.status(404).send('User not found');
         }
 
-        console.log('Retrieved user: ', user);
+        console.log('Retrieved user: ', userProfile);
 
         res.render('userprofile', {
                 user,
                 loggedIn,
-                userSession
+                userProfile
         });
     } catch (error) {
         console.error(error);
@@ -36,4 +35,43 @@ async function userProfileController(req, res) {
     }
 }
 
-module.exports = userProfileController;
+async function editPfp(req, res) {
+    const username = req.session.user.username;
+    const photo = "uploads/" + req.file.filename;
+
+    try {
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+        }
+
+        console.log('Received request to editPfp');
+
+        console.log("Username: ", username);
+        console.log("File: ", photo);
+
+        const userProfile = await User.findOneAndUpdate({username}, { pfp: photo });
+
+        if (!userProfile) {
+            return res.status(200).send('User not found. Please refresh the page.');
+        }
+
+        res.render('userprofile', {
+            loggedIn,
+            user,
+            userProfile
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+module.exports = {
+    userProfileController,
+    editPfp
+};

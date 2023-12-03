@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><%= user.username %> | Taft Tower Talk </title>
+        <title><%= userProfile.username %> | Taft Tower Talk </title>
         <link rel="icon" type="image/x-icon" href="/images/logo.png">
         <link rel="stylesheet" type="text/css" media="all" href="/css/base-css.css">
         <link rel="stylesheet" type="text/css" href="/css/profile.css">
@@ -49,18 +49,22 @@
             <aside class="profile">
                 
                 <div class="profile-pic">
-                    <label class="img-label" for="file">
+                    <% if (userProfile.username === user.username) { %>
+                    <label class="img-label" for="image">
                         <span class="change-image">Change Image</span>
                     </label>
-                    <input id="file" type="file" onchange="loadPFP(event)">
-                    <img src="/<%= user.pfp %>" id="main-pfp" alt="pfp">
+                    <form id="editPfpForm" action="/editPfp/<%= userProfile.username %>" method="POST" enctype="multipart/form-data">
+                        <input id="image" type="file" name="image" accept="image/*">
+                    </form>
+                    <% } %>
+                    <img src="/<%= userProfile.pfp %>" id="main-pfp" alt="pfp">
                 </div>
                 
 
-                <h1><%= user.fName %> <%= user.lName %></h1>
-                <span>@<%= user.username %></span>
-                <p><strong><i>Place</i></strong> <a href = "/condoprofile?name=<%= encodeURIComponent(user.uCondo) %>"><%= user.uCondo %></a></p>
-                <p><%= user.bio %></p>
+                <h1><%= userProfile.fName %> <%= userProfile.lName %></h1>
+                <span>@<%= userProfile.username %></span>
+                <p><strong><i>Place</i></strong> <a href = "/condoprofile?name=<%= encodeURIComponent(userProfile.uCondo) %>"><%= userProfile.uCondo %></a></p>
+                <p><%= userProfile.bio %></p>
             </aside>
 
             <section class="timeline">
@@ -87,6 +91,16 @@
     </div>
 
     <script src = "/js/profile.js"></script>
-
+    <script>
+        const fileInput = document.getElementById('image');
+        
+        const form = document.getElementById('editPfpForm');
+        
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                form.submit();
+            }
+        });
+    </script>
 </body>
 </html>

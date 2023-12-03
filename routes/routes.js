@@ -14,7 +14,7 @@ const {postAddCondo} = require('../controllers/addcondoController');
 const {condoprofileController} = require('../controllers/condoprofileController');
 const {submitReview} = require('../controllers/condoprofileController');
 const {submitComment} = require('../controllers/condoprofileController');
-const userProfileController = require('../controllers/userProfileController');
+const {userProfileController} = require('../controllers/userProfileController');
 const {registerController} = require('../controllers/registerController');
 const {postRegister} = require('../controllers/registerController');
 const {loginController} = require('../controllers/loginController');
@@ -23,6 +23,7 @@ const editProfileController = require('../controllers/editProfileController');
 const {renderCondoPanel} = require('../controllers/condopanelController');
 const condoguestController = require('../controllers/condoguestController');
 const logoutController = require('../controllers/logoutController');
+const {editPfp} = require('../controllers/userProfileController');
 
 // GET FUNCTIONS
 
@@ -52,6 +53,8 @@ router.get('/condoguest', condoguestController);
 
 router.get('/logout', logoutController);
 
+router.post('/editPfp/:username', upload.single('image'), editPfp);
+
 router.use((err, req, res, next) => {
     if (err.status === 404) {
         res.status(404).send('Not Found');
@@ -59,12 +62,6 @@ router.use((err, req, res, next) => {
         // Pass the error to the next error-handling middleware
         next(err);
     }
-});
-
-// Additional error handling middleware for other types of errors
-router.use((err, req, res, next) => {
-    // Handle other types of errors here or send a generic error response
-    res.status(err.status || 500).send('Internal Server Error');
 });
 
 module.exports = router;
