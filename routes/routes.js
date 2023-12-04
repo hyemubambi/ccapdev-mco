@@ -14,6 +14,10 @@ const {postAddCondo} = require('../controllers/addcondoController');
 const {condoprofileController} = require('../controllers/condoprofileController');
 const {submitReview} = require('../controllers/condoprofileController');
 const {submitComment} = require('../controllers/condoprofileController');
+const {postDeleteReview} = require('../controllers/condoprofileController');
+const {updateReview} = require('../controllers/condoprofileController');
+const {postDeleteComment} = require('../controllers/condoprofileController');
+const {updateComment} = require('../controllers/condoprofileController');
 const {userProfileController} = require('../controllers/userProfileController');
 const {registerController} = require('../controllers/registerController');
 const {postRegister} = require('../controllers/registerController');
@@ -40,6 +44,10 @@ router.post('/addcondo', upload.single('image'), postAddCondo);
 
 router.get('/submitCondoReview', submitReview);
 router.get('/submitReviewComment', submitComment);
+router.post('/deleteReview/:reviewID', postDeleteReview);
+router.patch('/editReview/:reviewID', updateReview);
+router.post('/deleteComment/:commentID', postDeleteComment);
+router.patch('/editComment/:commentID', updateComment);
 
 router.get('/userprofile/:username', userProfileController);
 
