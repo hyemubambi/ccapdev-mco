@@ -56,7 +56,7 @@
             <form id="review-form" action="/submitCondoReview" method="get" enctype="multipart/form-data">
                 <span class="review-title-rating">
                     <input type="hidden" name="reviewCondo" value="<%= condo.cName %>">
-                    <input type="hidden" name="reviewUsername" value="<%= condo.cName %>">
+                    <input type="hidden" name="reviewUsername" value="<%= user.username %>">
                     <input type="text" id="review-title" name="reviewTitle" placeholder="Review Title" required>
                     <select id="review-rating" name="reviewRating" required>
                         <option value="" disabled selected hidden>Rating</option>

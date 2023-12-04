@@ -30,6 +30,18 @@ const CommentSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    commentPfp: {
+        type: String,
+        required: true,
+    },
+    commentFirstName: {
+        type: String,
+        required: true,
+    },
+    commentLastName: {
+        type: String,
+        required: true,
+    }
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);

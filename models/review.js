@@ -42,6 +42,18 @@ const ReviewSchema = new mongoose.Schema({
             message: 'Too many photos, maximum is 4.',
         },
     },
+    reviewPfp: {
+        type: String,
+        required: true,
+    },
+    reviewFirstName: {
+        type: String,
+        required: true,
+    },
+    reviewLastName: {
+        type: String,
+        required: true,
+    }
 });
 
 module.exports = mongoose.model('Review', ReviewSchema);

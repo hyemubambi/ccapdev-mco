@@ -1,6 +1,7 @@
 const Condo = require('../models/condo.js');
 const Review = require('../models/review.js');
 const Comment = require('../models/comment.js');
+const User = require('../models/user.js');
 
 async function condoprofileController(req, res) {
     try {
