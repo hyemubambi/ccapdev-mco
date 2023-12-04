@@ -11,6 +11,8 @@ async function userProfileController(req, res) {
         if (req.session && req.session.user) {
             loggedIn = true;
             user = req.session.user;
+        } else {
+            return res.redirect('/homepage');
         }
 
         const username = req.params.username;
