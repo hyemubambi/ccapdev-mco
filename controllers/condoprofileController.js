@@ -141,8 +141,85 @@ async function submitComment(req, res) {
     }
 }
 
+
+
+async function postDeleteReview(req, res){
+    try{
+        const reviewID = req.params.reviewID;
+        const review = await Review.findById(reviewID);
+
+        if (!review) {
+            throw new Error('Review not found');
+        }
+
+        const condoName = review.condo;
+        const condo = await Condo.findOne({ cName: condoName });
+
+        if (!condo) {
+            throw new Error('Condo not found');
+        }
+        
+        const totalRatings = Math.round((condo.nReviews * condo.rating) - review.rating);
+        condo.nReviews -= 1;
+        if(condo.nReviews == 0){
+            condo.rating = 0;
+        }else{
+            condo.rating = totalRatings / condo.nReviews;
+        }
+        await condo.save();
+
+        await Review.findByIdAndDelete(reviewID);
+        res.send('Review deleted Successfully');
+    }catch (error){
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+async function postDeleteComment(req, res){
+    try{
+        const commentID = req.params.commentID;
+
+        await Comment.findByIdAndDelete(commentID);
+        res.send('Comment deleted Successfully');
+    }catch (error){
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+async function updateReview(req, res){
+    try{
+        const reviewID = req.params.reviewID;
+        const newText = req.body.newText;
+        const updatedReview = await Review.findByIdAndUpdate(reviewID,
+            {$set: {text: newText}},
+            {new: true}
+            );
+        res.json({message: 'review updated Successfully', review: updatedReview})
+    }catch (error){
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+async function updateComment(req, res){
+    try{
+        const commentID = req.params.commentID;
+        const newText = req.body.newText;
+        const updatedComment = await Comment.findByIdAndUpdate(commentID,
+            {$set: {text: newText}},
+            {new: true}
+            );
+        res.json({message: 'Comment updated Successfully', comment: updatedComment})
+    }catch (error){
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 module.exports = {
     condoprofileController,
     submitReview,
-    submitComment
+    submitComment,
+    postDeleteReview,
+    postDeleteComment,
+    updateReview,
+    updateComment
 };
