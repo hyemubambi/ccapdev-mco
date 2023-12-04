@@ -48,7 +48,7 @@
         <section class="profile-details">
             <div class="form">
                 <header id="edit-profile-header"><h2>Edit Profile</h2></header>
-                <form action="#" id="edit-profile-form" onsubmit="editProfile (event)">
+                <form action="/addcondo" method="post" enctype="multipart/form-data">
                     <section id="add-condo">
                         <label for="name">Name</label>
                         <input id="name" name="name" type="text" placeholder="Enter the condo name..." required>
@@ -68,37 +68,38 @@
                         </div>
                         <input type="submit" class="button" value="Save">
                     </section>
+                </form>
+                <form action="/editcondoprofile" method="post" enctype="multipart/form-data">
                     <section id="edit-condo">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" placeholder="Edit the condo name...">
-                        
-                        <label for="description">Description</label>
-                        <input id="description" name="description" type="text" placeholder="Edit the condo's description...">
-
-                        <label for="image" class="custom-file-upload">Choose Image</label> <span id="errorText"></span>
-                        <input type="file" id="image" name="image" accept="image/*">
-
-                        <div style="display: flex; flex-direction: row; gap: 8px;">
-                            <label for="budgetLower">Budget Lower Range</label>
-                            <input id="budgetLower" name="budgetLower" type="number">
-
-                            <label for="budgetUpper">Budget Higher Range</label>
-                            <input id="budgetUpper" name="budgetUpper" type="number">
-                        </div>
-                        <input type="submit" class="button" value="Save">
+                        <label for="cName">Pick a condo</label>
+                        <select id="cName" name="cName" required>
+                            <% condos.forEach(function(condo) { %>
+                                <option value="<%= condo.cName %>"><%= condo.cName %></option>
+                            <% }); %>
+                       
+                       <label for="description">Description</label>
+                       <input id="description" name="description" type="text" placeholder="Edit the condo's description..." required>
+     
+                       <label for="image" class="custom-file-upload">Choose Image</label> <span id="errorText"></span>
+                       <input type="file" id="image" name="image" accept="image/*">
+     
+                       <div style="display: flex; flex-direction: row; gap: 8px;">
+                           <label for="budgetLower">Budget Lower Range</label>
+                           <input id="budgetLower" name="budgetLower" type="number">
+     
+                           <label for="budgetUpper">Budget Higher Range</label>
+                           <input id="budgetUpper" name="budgetUpper" type="number">
+                       </div>
+                       <input type="submit" class="button" value="Save">
                     </section>
+                </form>
+                <form action="/deletecondoprofile" method="post">
                     <section id="delete-condo">
                         <label for="condo">Condominium/Place</label>
-                        <div class="custom-select">
-                            <select required>
-                                <option value="condo-placeholder" id="placeholder">Select Place:</option>
-                                <option value="condo1">Manila Residences</option>
-                                <option value="condo2">Studio Zen</option>
-                                <option value="condo3">WH Taft Residences</option>
-                                <option value="condo4">One Archer's Place</option>
-                                <option value="condo-default">None</option>
-                            </select>
-                        </div>
+                        <select id="cName" name="cName" required>
+                            <% condos.forEach(function(condo) { %>
+                                <option value="<%= condo.cName %>"><%= condo.cName %></option>
+                            <% }); %>
                         <input type="submit" class="button" value="Save">
                     </section>
                     <!-- <input type="submit" class="button" value="Save"> -->
