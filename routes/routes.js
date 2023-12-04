@@ -26,7 +26,7 @@ const {postRegister} = require('../controllers/registerController');
 const {loginController} = require('../controllers/loginController');
 const {postLogin} = require('../controllers/loginController');
 const editProfileController = require('../controllers/editProfileController');
-const {renderCondoPanel} = require('../controllers/condopanelController');
+const {renderCondoPanel, editCondoProfile, deleteCondoProfile} = require('../controllers/condopanelController');
 const condoguestController = require('../controllers/condoguestController');
 const logoutController = require('../controllers/logoutController');
 const {editPfp} = require('../controllers/userProfileController');
@@ -66,6 +66,9 @@ router.get('/condoguest', condoguestController);
 router.get('/logout', logoutController);
 
 router.post('/editPfp/:username', singleUploadController, editPfp);
+
+router.post('/editcondoprofile', upload.single('image'), editCondoProfile);
+router.post('/deletecondoprofile', deleteCondoProfile);
 
 router.get('/userprofile/:username/loadReviews', loadReviews);
 router.get('/userprofile/:username/loadComments', loadComments);
