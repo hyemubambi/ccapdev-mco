@@ -67,7 +67,7 @@ router.get('/logout', logoutController);
 
 router.post('/editPfp/:username', singleUploadController, editPfp);
 
-router.post('/editcondoprofile', upload.single('image'), editCondoProfile);
+router.post('/editcondoprofile', singleUploadController, editCondoProfile);
 router.post('/deletecondoprofile', deleteCondoProfile);
 
 router.get('/userprofile/:username/loadReviews', loadReviews);
