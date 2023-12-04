@@ -80,14 +80,25 @@ $(document).ready(function() {
         const postBox = e.target.closest('.review');
 
         if (postBox) {
+            const reviewID = postBox.id;
+            console.log(reviewID);
+            $.post(`/deleteReview/${reviewID}`, function(responses){
+                console.log(response);
+            })
             postBox.remove();
-    }
+        
+        }
     });
 
     $(document).on("click", ".comment-delete-button", function(e) {
         const postBox = e.target.closest('.comment');
 
         if (postBox) {
+            const commentID = postBox.id;
+            console.log(commentID);
+            $.post(`/deleteComment/${commentID}`, function(responses){
+                console.log(response);
+            })
             postBox.remove();
         }
     });
@@ -102,8 +113,21 @@ $(document).ready(function() {
         const saveButton = $('<button>').text('Save');
   
         saveButton.on('click', function() {
+          const reviewID = reviewDiv.attr('id');
+          console.log(reviewID);
           const newReviewText = textarea.val();
           reviewBody.text(newReviewText);
+          $.ajax({
+            url: `/editReview/${reviewID}`,
+            type: 'PATCH',
+            data: { newText: newReviewText},
+            success: function(response){
+                console.log(response);
+            },
+            error: function (error){
+                console.error(error);
+            }
+          });
           textarea.remove();
           saveButton.remove();
         });
@@ -121,8 +145,21 @@ $(document).ready(function() {
         const saveButton = $('<button>').text('Save');
   
         saveButton.on('click', function() {
+          const commentID = commentDiv.attr('id');
+          console.log(commentID);
           const newCommentText = textarea.val();
           commentBody.text(newCommentText);
+          $.ajax({
+            url: `/editComment/${commentID}`,
+            type: 'PATCH',
+            data: { newText: newCommentText},
+            success: function(response){
+                console.log(response);
+            },
+            error: function (error){
+                console.error(error);
+            }
+          });
           textarea.remove();
           saveButton.remove();
         });
