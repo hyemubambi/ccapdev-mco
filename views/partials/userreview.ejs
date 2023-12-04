@@ -11,6 +11,7 @@
                     <a href="/condoprofile?name=<%= encodeURIComponent(review.condo) %>"><span class="review-condo-name"><%= review.condo %></span> | <span class="review-condo-rating"><%= review.rating %>/5</span></a>
                 </div>
             </div>
+            <% if (user.username === review.username){ %>
             <div class="crud-dropdown">
                 <a><img src = "/images/options.svg" alt="Options"></a>
                 <div class="crud-content">
@@ -18,6 +19,7 @@
                     <a class="review-delete-button">Delete</a>
                 </div>
             </div>
+            <%} %>
         </header>
     
         <a href="#">

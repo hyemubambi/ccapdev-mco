@@ -1,14 +1,14 @@
 <% reviews.forEach(review => { %>
     <div class="review" id = "<%= review._id %>">
         <header>
-            <a href="#"><img class="review-icon" src="<%= review.reviewPfp %>"></a>
+            <a href="/userprofile/<%= review.username %>"><img class="review-icon" src="<%= review.reviewPfp %>"></a>
             <div class="review-main-details">
                 <div class="review-user">
-                    <a href="#"><h3 class="user-name"><%= review.reviewFirstName %> <%= review.reviewLastName %></h3></a>
-                    <a href="#"><span class="user-id">@<%= review.username %></span></a>
+                    <a href="/userprofile/<%= review.username %>"><h3 class="user-name"><%= review.reviewFirstName %> <%= review.reviewLastName %></h3></a>
+                    <a href="/userprofile/<%= review.username %>"><span class="user-id">@<%= review.username %></span></a>
                 </div>
                 <div class="review-condo">
-                    <a href="#"><span class="review-condo-name"><%= review.condo %></span> | <span class="review-condo-rating"><%= review.rating %>/5</span></a>
+                    <a href="/condoprofile?name=<%= encodeURIComponent(review.condo) %>"><span class="review-condo-name"><%= review.condo %></span> | <span class="review-condo-rating"><%= review.rating %>/5</span></a>
                 </div>
             </div>
             <% if (user.username === review.username){ %>
@@ -26,7 +26,9 @@
         <div class="review-contents">
             <h2 class="review-title"><%= review.title %></h2>
             <span class="review-body">
+                <a href="/condoprofile?name=<%= encodeURIComponent(review.condo) %>">
                 <%= review.text %>
+                </a>
             </span>
             <div class="review-photos-container">
                 <% if (review.photos && review.photos.length > 0) { %>
@@ -103,7 +105,7 @@
                 <% reviewComments.forEach(comment => { %>
                 <div class="comment" id = "<%= comment._id %>">
                     <header>
-                        <img class="comment-icon" src="<%= comment.commentPfp %>">
+                        <a href="/userprofile/<%= comment.username %>"><img class="comment-icon" src="<%= comment.commentPfp %>"></a>
                         <div class="comment-main-details">
                             <div class="comment-user">
                                 <h3 class="user-name"><%= comment.commentFirstName %> <%= comment.commentLastName %></h3> <span class="user-id">@<%= comment.username %></span>
