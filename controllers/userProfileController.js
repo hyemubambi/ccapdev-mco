@@ -23,11 +23,16 @@ async function userProfileController(req, res) {
         }
 
         console.log('Retrieved user: ', userProfile);
+        const reviews = await Review.find({ username: username });
+        const reviewIds = reviews.map(review => review._id);
+        const comments = await Comment.find({ review: { $in: reviewIds } });
 
         res.render('userprofile', {
                 user,
                 loggedIn,
-                userProfile
+                userProfile,
+                reviews,
+                comments
         });
     } catch (error) {
         console.error(error);
@@ -71,7 +76,71 @@ async function editPfp(req, res) {
     }
 }
 
+async function loadReviews(req, res) {
+    try {
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+        }
+
+        const username = req.params.username;
+        const reviews = await Review.find({ username: username });
+        const reviewIds = reviews.map(review => review._id);
+        const comments = await Comment.find({ review: { $in: reviewIds } });
+        const userProfile = await User.findOne({ username: username });
+
+        res.render('userprofile', {
+            user,
+            loggedIn,
+            comments,
+            userProfile,
+            reviews
+        });
+
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+async function loadComments(req, res) {
+    try {
+        let loggedIn = false;
+        let user = null;
+
+        if (req.session && req.session.user) {
+            loggedIn = true;
+            user = req.session.user;
+        }
+
+        const username = req.params.username;
+        const reviews = await Review.find({ username: username });
+        const reviewIds = reviews.map(review => review._id);
+        const comments = await Comment.find({ review: { $in: reviewIds } });
+        const userProfile = await User.findOne({ username: username });
+
+        res.render('userprofile', {
+            user,
+            loggedIn,
+            comments,
+            userProfile,
+            reviews
+        });
+
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
 module.exports = {
     userProfileController,
-    editPfp
+    editPfp,
+    loadReviews,
+    loadComments
 };

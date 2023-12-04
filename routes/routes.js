@@ -24,6 +24,8 @@ const {renderCondoPanel} = require('../controllers/condopanelController');
 const condoguestController = require('../controllers/condoguestController');
 const logoutController = require('../controllers/logoutController');
 const {editPfp} = require('../controllers/userProfileController');
+const {loadReviews} = require('../controllers/userProfileController');
+const {loadComments} = require('../controllers/userProfileController');
 
 // GET FUNCTIONS
 
@@ -54,6 +56,9 @@ router.get('/condoguest', condoguestController);
 router.get('/logout', logoutController);
 
 router.post('/editPfp/:username', upload.single('image'), editPfp);
+
+router.get('/userprofile/:username/loadReviews', loadReviews);
+router.get('/userprofile/:username/loadComments', loadComments);
 
 router.use((err, req, res, next) => {
     if (err.status === 404) {
