@@ -33,7 +33,7 @@
             <div class="review-photos-container">
                 <% if (review.photos && review.photos.length > 0) { %>
                     <% review.photos.forEach(photo => { %>
-                        <img class="review-photo" src="<%= photo %>">
+                        <img class="review-photo" src="uploads/<%= photo %>">
                     <% }) %>
                 <% } else { %>
                     

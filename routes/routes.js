@@ -5,7 +5,9 @@ router.use(express.json());
 
 router.use(express.urlencoded( { extended : true } ));
 
-const upload = require('../controllers/uploadController');
+const {singleUploadController} = require('../controllers/uploadController');
+const {uploadController} = require('../controllers/uploadController');
+
 const homepageController = require('../controllers/homepageController');
 const searchController = require('../controllers/searchController');
 const condolistController = require('../controllers/condolistController');
@@ -40,9 +42,9 @@ router.get('/condolist', condolistController);
 router.get('/aboutpage', aboutpageController);
 router.get('/condoprofile', condoprofileController);
 
-router.post('/addcondo', upload.single('image'), postAddCondo);
+router.post('/addcondo', singleUploadController, postAddCondo);
 
-router.get('/submitCondoReview', submitReview);
+router.post('/submitCondoReview', uploadController, submitReview);
 router.get('/submitReviewComment', submitComment);
 router.post('/deleteReview/:reviewID', postDeleteReview);
 router.patch('/editReview/:reviewID', updateReview);
@@ -63,7 +65,7 @@ router.get('/condoguest', condoguestController);
 
 router.get('/logout', logoutController);
 
-router.post('/editPfp/:username', upload.single('image'), editPfp);
+router.post('/editPfp/:username', singleUploadController, editPfp);
 
 router.get('/userprofile/:username/loadReviews', loadReviews);
 router.get('/userprofile/:username/loadComments', loadComments);

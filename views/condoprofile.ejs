@@ -53,7 +53,7 @@
         <!-- REVIEWS-->
        
         <div class="post-review">
-            <form id="review-form" action="/submitCondoReview" method="get" enctype="multipart/form-data">
+            <form id="review-form" action="/submitCondoReview" method="post" enctype="multipart/form-data">
                 <span class="review-title-rating">
                     <input type="hidden" name="reviewCondo" value="<%= condo.cName %>">
                     <input type="hidden" name="reviewUsername" value="<%= user.username %>">

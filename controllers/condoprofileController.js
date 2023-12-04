@@ -53,16 +53,24 @@ async function condoprofileController(req, res) {
 
 async function submitReview(req, res) {
     try {
-        // Log the request body to see what data is being received
-        const {reviewCondo} = req.query;
-        const {reviewUsername} = req.query;
-        const {reviewTitle} = req.query;
-        const {reviewRating} = req.query;
-        const {reviewText} = req.query;
+        const { reviewCondo, reviewUsername, reviewTitle, reviewRating, reviewText } = req.body;
         const reviewDate = new Date().toISOString();
 
+        console.log("USERNAME: ", reviewUsername);
+ 
         const userProfile = await User.findOne({ username: reviewUsername });
 
+        if (!userProfile) {
+            console.error('User not found:', reviewUsername);
+            res.status(404).send('User not found');
+            return;
+        }
+ 
+        // Extract file details from req.files
+        const fileDetails = req.files['review-photos'].map(file => {
+            return file.filename; // Extracting only the filename
+        });
+ 
         // Create a new review instance
         const newReview = new Review({
             title: reviewTitle,
@@ -73,28 +81,28 @@ async function submitReview(req, res) {
             date: reviewDate,
             likes: 0,
             dislikes: 0,
-            photos: [],
+            photos: fileDetails, // Add uploaded file details to the review
             reviewPfp: userProfile.pfp,
             reviewFirstName: userProfile.fName,
             reviewLastName: userProfile.lName,
         });
-
+ 
         // Save the review to the database
         const savedReview = await newReview.save();
         console.log('Saved Review:', savedReview);
-
+ 
         const filter = { cName: savedReview.condo };
         const update = { $inc: { nReviews: 1 } };
         await Condo.updateOne(filter, update);
-
+ 
         // Calculate the average rating for the condo
         const reviewsForCondo = await Review.find({ condo: reviewCondo });
         const totalRatings = reviewsForCondo.reduce((sum, review) => sum + review.rating, 0);
         const averageRating = totalRatings / reviewsForCondo.length;
-
+ 
         // Update the condo's average rating in the database
         await Condo.updateOne({ cName: reviewCondo }, { $set: { rating: averageRating } });
-
+ 
         // Redirect to the condo profile page with the saved review's condo name
         res.redirect(`/condoprofile?name=${savedReview.condo}`);
     } catch (error) {
@@ -103,12 +111,13 @@ async function submitReview(req, res) {
     }
 }
 
+
 async function submitComment(req, res) {
     try {
         // Log the request body to see what data is being received
         const {commentText} = req.query;
         const {commentUsername} = req.query;
-        const {reviewId} =req.query;
+        const {reviewId} = req.query;
         const {commentCondo} = req.query;
         const commentDate = new Date().toISOString();
 
