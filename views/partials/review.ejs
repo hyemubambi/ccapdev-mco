@@ -1,11 +1,11 @@
 <% reviews.forEach(review => { %>
 <div class="review">
     <header>
-        <a href="#"><img class="review-icon" src="<%= user.pfp %>"></a>
+        <a href="#"><img class="review-icon" src="<%= review.reviewPfp %>"></a>
         <div class="review-main-details">
             <div class="review-user">
-                <a href="#"><h3 class="user-name"><%= review.username %></h3></a>
-                <a href="#"><span class="user-id"><%= review.username %></span></a>
+                <a href="#"><h3 class="user-name"><%= review.reviewFirstName %> <%= review.reviewLastName %></h3></a>
+                <a href="#"><span class="user-id">@<%= review.username %></span></a>
             </div>
             <div class="review-condo">
                 <a href="#"><span class="review-condo-name"><%= review.condo %></span> | <span class="review-condo-rating"><%= review.rating %>/5</span></a>
@@ -82,11 +82,11 @@
     <hr class="line">
 
     <div class="comment-input">
-        <img class="review-icon" src ="uploads/yunjin.jpg">
+        <img class="review-icon" src ="<%= user.pfp %>">
         <form class="newComment" method = "get" action="/submitReviewComment">
             <input type="hidden" name="reviewId" value="<%= review._id %>">
-            <input type="hidden" name="commentUsername" value="<%= condo.cName %>">
-            <input type="hidden" name="commentCondo" value="<%= condo.cName %>">
+            <input type="hidden" name="commentUsername" value="<%= user.username %>">
+            <input type="hidden" name="commentCondo" value="<%= review.condo %>">
             <textarea class="newComment" name="commentText" rows="4" placeholder="Comment..." required></textarea><br>
 
             <button type="submit">Post Comment</button> 
@@ -101,10 +101,10 @@
             <% reviewComments.forEach(comment => { %>
             <div class="comment">
                 <header>
-                    <img class="comment-icon" src="images/default-pfp.jpg">
+                    <img class="comment-icon" src="<%= comment.commentPfp %>">
                     <div class="comment-main-details">
                         <div class="comment-user">
-                            <h3 class="user-name"><%= comment.username %></h3> <span class="user-id">@<%= comment.username %></span>
+                            <h3 class="user-name"><%= comment.commentFirstName %> <%= comment.commentLastName %></h3> <span class="user-id">@<%= comment.username %></span>
                         </div>
                         <span class="comment-date-time"><%= comment.date %></span>
                     </div>

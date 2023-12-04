@@ -61,6 +61,8 @@ async function submitReview(req, res) {
         const {reviewText} = req.query;
         const reviewDate = new Date().toISOString();
 
+        const userProfile = await User.findOne({ username: reviewUsername });
+
         // Create a new review instance
         const newReview = new Review({
             title: reviewTitle,
@@ -72,6 +74,9 @@ async function submitReview(req, res) {
             likes: 0,
             dislikes: 0,
             photos: [],
+            reviewPfp: userProfile.pfp,
+            reviewFirstName: userProfile.fName,
+            reviewLastName: userProfile.lName,
         });
 
         // Save the review to the database
@@ -92,7 +97,7 @@ async function submitReview(req, res) {
 
         // Redirect to the condo profile page with the saved review's condo name
         res.redirect(`/condoprofile?name=${savedReview.condo}`);
-    } catch {
+    } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
@@ -107,6 +112,8 @@ async function submitComment(req, res) {
         const {commentCondo} = req.query;
         const commentDate = new Date().toISOString();
 
+        const userProfile = await User.findOne({ username: commentUsername });
+
         // Create a new review instance
         const newComment = new Comment({
             text: commentText,
@@ -116,6 +123,9 @@ async function submitComment(req, res) {
             date: commentDate,
             likes: 0,
             dislikes: 0,
+            commentPfp: userProfile.pfp,
+            commentFirstName: userProfile.fName,
+            commentLastName: userProfile.lName,
         });
 
         // Save the review to the database
@@ -125,7 +135,7 @@ async function submitComment(req, res) {
 
         // Redirect to the condo profile page with the saved review's condo name
         res.redirect(`/condoprofile?name=${encodedCondo}&reviewId=${savedComment.review}`);
-    } catch {
+    } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
