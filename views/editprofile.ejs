@@ -50,26 +50,32 @@
         <section class="profile-details">
             <div class="form">
                 <header id="edit-profile-header"><h2>Edit Profile</h2></header>
-                <form action="#" id="edit-profile-form" onsubmit="editProfile (event)">
+                <form action="/editPersonalInfo/<%= user._id %>" method="post">
                     <section id="personal-info">
                         <label for="first-name">First Name</label>
-                        <input id="first-name" type="text" placeholder="<%=user.fName%>" required>
+                        <input id="first-name" name="fName" type="text" placeholder="<%=user.fName%>" required>
                         <label for="last-name">Last Name</label>
-                        <input id="last-name" type="text" placeholder="<%=user.lName%>" required>
+                        <input id="last-name" name="lName" type="text" placeholder="<%=user.lName%>" required>
+                        <input type="submit" class="button" value="Save">
                     </section>
+                </form>
+                <form action="/editAccountDetails/<%= user._id %>" method="post">
                     <section id="account-details">
                         <label for="email">Email</label>
-                        <input id="email" type="email" placeholder="<%=user.email%>" readonly>
+                        <input id="email" name = "email" type="email" placeholder="<%=user.email%>" readonly>
                         <label for="old-username">Current Username</label>
                         <input id="old-username" type="text" placeholder="<%=user.username%>" readonly>
                         <label for="username">New Username</label>
-                        <input id="username" type="text" placeholder="Enter your username here..." required>
+                        <input id="username" name= "username" type="text" placeholder="Enter your username here..." required>
+                        <input type="submit" class="button" value="Save">
                     </section>
+                </form>
+                <form class="/editAdditionalInfo/<%= user._id %>" method="post">
                     <section id="additional-info">
                         <label for="condo">Condominium/Place</label>
                         <div class="custom-select">
                             <select required>
-                                <option value="condo-placeholder" id="placeholder">Select Place:</option>
+                                <option value="condo-placeholder" name ="uCondo" id="placeholder">Select Place:</option>
                                 <option value="condo1">Manila Residences</option>
                                 <option value="condo2">Studio Zen</option>
                                 <option value="condo3">WH Taft Residences</option>
@@ -78,10 +84,12 @@
                             </select>
                         </div>
                         <label for="bio">User Bio (400 character limit)</label>
-                        <textarea id="bio" placeholder="Write a short bio..." maxlength="400" style="resize: none;"></textarea>
+                        <textarea id="bio" name= "bio" placeholder="Write a short bio..." maxlength="400" style="resize: none;"></textarea>
+                        <input type="submit" class="button" value="Save">
                     </section>
-                    <input type="submit" class="button" value="Save">
                 </form>
+                    
+                
             </div>
         </section>
     </div>
