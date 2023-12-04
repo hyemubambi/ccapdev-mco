@@ -60,6 +60,9 @@ async function editPfp(req, res) {
         console.log("Username: ", username);
         console.log("File: ", photo);
 
+        const reviews = await Review.find({ username: username });
+        const reviewIds = reviews.map(review => review._id);
+        const comments = await Comment.find({ review: { $in: reviewIds } });
         const userProfile = await User.findOneAndUpdate({username}, { pfp: photo });
 
         if (!userProfile) {
@@ -69,7 +72,9 @@ async function editPfp(req, res) {
         res.render('userprofile', {
             loggedIn,
             user,
-            userProfile
+            userProfile,
+            reviews,
+            comments
         });
 
     } catch (error) {
