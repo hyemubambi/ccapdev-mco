@@ -16,6 +16,7 @@
 - npm i dotenv
 - npm i express-session
 - npm install bcrypt
+- npm install cloudinary
 
 STEPS
 1) Unzip folder
