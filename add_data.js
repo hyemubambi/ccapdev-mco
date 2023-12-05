@@ -14,7 +14,7 @@ const add_data = {
             hRange: 30000.00,
             nReviews: 0,
             rating: 0,
-            photo: 'uploads/manilaresidences.jpg',
+            photo: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701762515/manilaresidences_lexlcr.jpg',
         },
         {
             cName: 'Studio Zen',
@@ -23,7 +23,7 @@ const add_data = {
             hRange: 30000.00,
             nReviews: 0,
             rating: 0,
-            photo: 'uploads/studiozen.jpg',
+            photo: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701762515/studiozen_hwz8ii.jpg',
         },
         {
             cName: 'One Archers Place',
@@ -32,7 +32,7 @@ const add_data = {
             hRange: 24000.00,
             nReviews: 0,
             rating: 0,
-            photo: 'uploads/onearchers.jpg',
+            photo: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701762515/onearchers_k1nf1w.jpg',
         },
         {
             cName: 'Green Residences',
@@ -41,7 +41,7 @@ const add_data = {
             hRange: 34000.00,
             nReviews: 0,
             rating: 0,
-            photo: 'uploads/greenresidence.jpg',
+            photo: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701762515/greenresidence_xuafel.jpg',
         },
         {
             cName: `D' University Place`,
@@ -50,7 +50,7 @@ const add_data = {
             hRange: 32000.00,
             nReviews: 0,
             rating: 0,
-            photo: 'uploads/duniversityplace.jpg',
+            photo: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701762515/duniversityplace_adqava.jpg',
         },
         {
             cName: 'WH Taft Residence',
@@ -59,7 +59,7 @@ const add_data = {
             hRange: 34000.00,
             nReviews: 0,
             rating: 0,
-            photo: 'uploads/whtaft.jpg',
+            photo: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701762516/whtaft_bbafic.jpg',
         }
 
         ]
