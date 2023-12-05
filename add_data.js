@@ -70,7 +70,7 @@ const add_data = {
     populateUsers: function() {
         var user = [{
             username: 'simjake2002',
-            password: 'enhypen',
+            password: 'Enhypen1!',
             fName: 'Jake',
             lName: 'Sim',
             email: 'jakesim@gmail.com',
@@ -81,7 +81,7 @@ const add_data = {
         },
         {
             username: 'jennierubyjane',
-            password: 'blackpink',
+            password: 'Blackpink1!',
             fName: 'Jennie',
             lName: 'Kim',
             email: 'jenniekim@gmail.com',
@@ -92,7 +92,7 @@ const add_data = {
         },
         {
             username: 'balletzuha',
-            password: 'lesserafim',
+            password: 'Lesserafim1!',
             fName: 'Kazuha',
             lName: 'Nakamura',
             email: 'kazuhanakamura@gmail.com',
@@ -103,7 +103,7 @@ const add_data = {
         },
         {
             username: 'SabrinaKarpintero',
-            password: 'soloist',
+            password: 'Soloist1!',
             fName: 'Sabrina',
             lName: 'Carpenter',
             email: 'sabrinacarpenter@gmail.com',
@@ -114,7 +114,7 @@ const add_data = {
         },
         {
             username: 'ItsSunghoon',
-            password: 'enhypen',
+            password: 'Enhypen1!',
             fName: 'Sunghoon',
             lName: 'Park',
             email: 'sunghoonpark@gmail.com',
@@ -125,7 +125,7 @@ const add_data = {
         },
         {
             username: 'operayunjin',
-            password: 'lesserafim',
+            password: 'Lesserafim1!',
             fName: 'Yunjin',
             lName: 'Huh',
             email: 'yunjinhuh@gmail.com',
@@ -136,7 +136,7 @@ const add_data = {
         },
         {
             username: 'webAdmin',
-            password: '12345',
+            password: 'Hello12345!',
             fName: 'Admin',
             lName: 'A',
             email: 'admin@gmail.com',
