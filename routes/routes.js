@@ -18,6 +18,7 @@ const {submitReview} = require('../controllers/condoprofileController');
 const {submitComment} = require('../controllers/condoprofileController');
 const {postDeleteReview} = require('../controllers/condoprofileController');
 const {updateReview} = require('../controllers/condoprofileController');
+const {updateLikesDislikes} = require('../controllers/condoprofileController');
 const {postDeleteComment} = require('../controllers/condoprofileController');
 const {updateComment} = require('../controllers/condoprofileController');
 const {userProfileController} = require('../controllers/userProfileController');
@@ -26,7 +27,7 @@ const {postRegister} = require('../controllers/registerController');
 const {loginController} = require('../controllers/loginController');
 const {postLogin} = require('../controllers/loginController');
 const {editProfileController, postEditAccountDetails} = require('../controllers/editProfileController');
-const {postEditPersonalInfo} = require('../controllers/editProfileController');
+const {postEditPersonalInfo, postAdditionalInfo} = require('../controllers/editProfileController');
 const {renderCondoPanel, editCondoProfile, deleteCondoProfile} = require('../controllers/condopanelController');
 const condoguestController = require('../controllers/condoguestController');
 const logoutController = require('../controllers/logoutController');
@@ -51,6 +52,8 @@ router.post('/deleteReview/:reviewID', postDeleteReview);
 router.patch('/editReview/:reviewID', updateReview);
 router.post('/deleteComment/:commentID', postDeleteComment);
 router.patch('/editComment/:commentID', updateComment);
+router.post('/deleteComment/:commentID', postDeleteComment);
+router.post('/updateLikesDislikes', updateLikesDislikes);
 
 router.get('/userprofile/:username', userProfileController);
 
@@ -62,6 +65,7 @@ router.post('/login', postLogin);
 router.get('/editprofile/:username', editProfileController);
 router.post('/editPersonalInfo/:userID', postEditPersonalInfo);
 router.post('/editAccountDetails/:userID', postEditAccountDetails);
+router.post('/editAdditionalInfo/:userID', postAdditionalInfo);
 router.get('/renderCondoPanel', renderCondoPanel);
 router.get('/condoguest', condoguestController);
 
