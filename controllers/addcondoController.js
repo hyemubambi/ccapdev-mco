@@ -1,5 +1,6 @@
 const Condo = require('../models/condo.js');
 const db = require('../models/db.js');
+const cloudinary = require('./cloudinary');
 
 async function postAddCondo(req, res){
 
@@ -8,14 +9,16 @@ async function postAddCondo(req, res){
         var description = req.body.description;
         var lRange = req.body.budgetLower;
         var hRange = req.body.budgetUpper;
-        const photo = "uploads/" + req.file.filename;
+        const photo = req.file.path;
     
+        const result = await cloudinary.uploader.upload(photo);
+
         var newCondo = {
             cName: cName,
             description: description,
             lRange: lRange,
             hRange: hRange,
-            photo: photo
+            photo: result.secure_url
         }
 
         var response = await db.insertOne(Condo, newCondo);

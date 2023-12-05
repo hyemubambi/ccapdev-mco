@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     },
     pfp: {
         type: String,
-        default: 'images/default-pfp.jpg',
+        default: 'https://res.cloudinary.com/dzadlrvwt/image/upload/v1701759808/default-pfp_w4gylk.jpg',
     },
     admin: {
         type: Boolean,

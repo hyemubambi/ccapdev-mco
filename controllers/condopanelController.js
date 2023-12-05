@@ -1,5 +1,6 @@
 const Condo = require('../models/condo.js');
 const User = require('../models/user.js');
+const cloudinary = require('./cloudinary');
 
 async function renderCondoPanel(req, res) {
     try {
@@ -34,10 +35,11 @@ async function editCondoProfile(req, res) {
     let user = null;
   
     // Get the uploaded file information
-    const uploadedFile = "uploads/" + req.file.filename;
+    const photo = req.file.path;
+    const result = await cloudinary.uploader.upload(photo);
   
     // Find the condo by its cName and update it
-    const condo = await Condo.findOneAndUpdate({ cName }, { name, description, lRange: budgetLower, hRange: budgetUpper, photo: uploadedFile }, { new: true });
+    const condo = await Condo.findOneAndUpdate({ cName }, { name, description, lRange: budgetLower, hRange: budgetUpper, photo: result.secure_url }, { new: true });
   
     // Fetch the list of condos
     const condos = await Condo.find().sort({cName: 1});

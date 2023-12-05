@@ -2,6 +2,7 @@ const Condo = require('../models/condo.js');
 const Review = require('../models/review.js');
 const Comment = require('../models/comment.js');
 const User = require('../models/user.js');
+const cloudinary = require('./cloudinary');
 
 async function condoprofileController(req, res) {
     try {
@@ -66,10 +67,12 @@ async function submitReview(req, res) {
             return;
         }
  
-        // Extract file details from req.files
-        const fileDetails = req.files['review-photos'].map(file => {
-            return file.filename; // Extracting only the filename
-        });
+        const fileDetails = [];
+        for (const file of req.files['review-photos']) {
+            const result = await cloudinary.uploader.upload(file.path);
+            console.log(result.secure_url);
+            fileDetails.push(result.secure_url);
+        }
  
         // Create a new review instance
         const newReview = new Review({

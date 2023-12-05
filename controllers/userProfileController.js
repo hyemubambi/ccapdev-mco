@@ -46,7 +46,6 @@ async function userProfileController(req, res) {
 async function editPfp(req, res) {
     try {
         const username = req.session.user.username;
-        // const photo = "uploads/" + req.file.filename;
         const photo = req.file.path;
 
         const result = await cloudinary.uploader.upload(photo);

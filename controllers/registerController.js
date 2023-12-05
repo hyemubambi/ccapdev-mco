@@ -62,7 +62,7 @@ async function postRegister(req, res){
             lName: lName,
             uCondo: "",
             bio: "",
-            pfp: "images/default-pfp.jpg",
+            pfp: "https://res.cloudinary.com/dzadlrvwt/image/upload/v1701759808/default-pfp_w4gylk.jpg",
             admin: false,
         });
 

@@ -13,7 +13,7 @@
             </div>
             <% if (user.username === review.username){ %>
             <div class="crud-dropdown">
-                <a><img src = "images/options.svg" alt="Options"></a>
+                <a><img src = "https://res.cloudinary.com/dzadlrvwt/image/upload/v1701759810/options_lnnek1.svg" alt="Options"></a>
                 <div class="crud-content">
                     <a class="review-edit-button">Edit</a>
                     <a class="review-delete-button">Delete</a>
@@ -33,7 +33,7 @@
             <div class="review-photos-container">
                 <% if (review.photos && review.photos.length > 0) { %>
                     <% review.photos.forEach(photo => { %>
-                        <img class="review-photo" src="uploads/<%= photo %>">
+                        <img class="review-photo" src="<%= photo %>">
                     <% }) %>
                 <% } else { %>
                     
@@ -114,7 +114,7 @@
                         </div>
                         <% if (user.username === comment.username){ %>
                             <div class="crud-dropdown">
-                                <a><img src = "images/options.svg" alt="Options"></a>
+                                <a><img src = "https://res.cloudinary.com/dzadlrvwt/image/upload/v1701759810/options_lnnek1.svg" alt="Options"></a>
                                 <div class="crud-content">
                                     <a class="comment-edit-button">Edit</a>
                                     <a class="comment-delete-button">Delete</a>
