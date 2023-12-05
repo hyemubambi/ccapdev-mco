@@ -8,7 +8,7 @@ async function editProfileController(req, res) {
         let loggedIn = false;
         let userSession = null;
         let user = null;
-
+        const condos = await Condo.find().sort({cName: 1});
         if (req.session && req.session.user) {
             loggedIn = true;
             userSession = req.session.user;
@@ -20,7 +20,8 @@ async function editProfileController(req, res) {
         res.render('editprofile', {
             user,
             loggedIn,
-            userSession
+            userSession,
+            condos
         });
     } catch (error) {
         console.error(error);
@@ -86,38 +87,39 @@ async function postEditAccountDetails(req, res){
     }
 }
 
-// async function postAdditionalInfo(req, res){
-//     try{
-//         const {bio, uCondo} = req.body;
-//         const userID = req.params.userID;
+async function postAdditionalInfo(req, res){
+    try{
+        const {bio, uCondo} = req.body;
+        const userID = req.params.userID;
 
-
-//         const updateUser = await User.findByIdAndUpdate(userID, {bio, uCondo}, {new:true});
-//         if (!updateUser) {
-//             // Handle the case where the user is not found
-//             return res.status(404).send('User not found');
-//         }
-//         loggedIn = true;
-//         const user = req.session.user;
-//         const username = user.username;
-//         const userProfile = await User.findOne({ username: username });
-//         const reviews = await Review.find({ username: username });
-//         const reviewIds = reviews.map(review => review._id);
-//         const comments = await Comment.find({ review: { $in: reviewIds } });
-//         res.render('userprofile', {
-//             loggedIn, 
-//             user, 
-//             userProfile, 
-//             reviews,
-//             comments});
-//     }catch (error){
-//         console.error(error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// }
+        console.log(uCondo);
+        const updateUser = await User.findByIdAndUpdate(userID, {bio, uCondo}, {new:true});
+        if (!updateUser) {
+            // Handle the case where the user is not found
+            return res.status(404).send('User not found');
+        }
+        loggedIn = true;
+        const user = req.session.user;
+        const username = user.username;
+        const userProfile = await User.findOne({ username: username });
+        const reviews = await Review.find({ username: username });
+        const reviewIds = reviews.map(review => review._id);
+        const comments = await Comment.find({ review: { $in: reviewIds } });
+        res.render('userprofile', {
+            loggedIn, 
+            user, 
+            userProfile, 
+            reviews,
+            comments});
+    }catch (error){
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 
 module.exports = {
     editProfileController,
     postEditPersonalInfo,
     postEditAccountDetails,
+    postAdditionalInfo
 };

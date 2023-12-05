@@ -223,6 +223,34 @@ async function updateComment(req, res){
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+async function updateLikesDislikes(req, res){
+    try{
+
+        const {ID, action } = req.body;
+        if(action === 'likeReview'){
+            const review = await Review.findById(ID);
+            review.likes += 1;
+            await review.save();
+        }else if (action === 'dislikeReview'){
+            const review = await Review.findById(ID);
+            review.dislikes += 1;
+            await review.save();
+        }else if(action === 'likeComment'){
+            const comment = await Comment.findById(ID);
+            comment.likes += 1;
+            await comment.save();
+        }else if (action === 'dislikeComment'){
+            const comment = await Comment.findById(ID);
+            comment.dislikes += 1;
+            await comment.save();
+        }
+
+        res.status(200).json({ success: true, message: 'Likes and dislikes updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 module.exports = {
     condoprofileController,
     submitReview,
@@ -230,5 +258,7 @@ module.exports = {
     postDeleteReview,
     postDeleteComment,
     updateReview,
-    updateComment
+    updateComment,
+    updateLikesDislikes
+
 };
