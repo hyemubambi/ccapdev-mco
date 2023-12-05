@@ -2,7 +2,25 @@ $(document).ready(function() {
     $(".comment-input").hide();
     $(".comment-line").hide();
 
+    function updateLikesDislikes(action, button){
+        if(action === 'likeReview' || action === 'dislikeReview'){
+            var ID = $(button).closest('.review').attr('id');  
+        }else if(action == 'likeComment' || action === 'dislikeComment'){
+            var ID = $(button).closest('.comment').attr('id');  
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/updateLikesDislikes',
+            data: {ID, action},
+            success: function(response){
+                console.log(response);
+            },error: function(error){
+                console.error(error);
+            }
+        });
+    }
     $(".like-button").click(function() {
+        
         var likeCounter = $(this).siblings(".like-counter");
         var currentCount = parseInt(likeCounter.text());
         var likeClicked = $(this).data('clicked');
@@ -15,6 +33,7 @@ $(document).ready(function() {
 
         $(this).data('clicked', !likeClicked);
         $(this).find(".svg-fill").toggleClass("clicked");
+        updateLikesDislikes('likeReview', this);
     });
 
     $(".dislike-button").click(function() {
@@ -30,6 +49,7 @@ $(document).ready(function() {
 
         $(this).data('clicked', !dislikeClicked);
         $(this).find(".svg-fill").toggleClass("clicked");
+        updateLikesDislikes('dislikeReview', this);
     });
 
     $(".comment-like-button").click(function() {
@@ -45,6 +65,7 @@ $(document).ready(function() {
 
         $(this).data('clicked', !commLikeClicked);
         $(this).find(".svg-fill").toggleClass("clicked");
+        updateLikesDislikes('likeComment', this);
     });
 
     $(".comment-dislike-button").click(function() {
@@ -60,6 +81,7 @@ $(document).ready(function() {
 
         $(this).data('clicked', !commDislikeClicked);
         $(this).find(".svg-fill").toggleClass("clicked");
+        updateLikesDislikes('dislikeComment', this);
     });
 
     var commentButtonClicked = false;
