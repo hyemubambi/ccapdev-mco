@@ -70,21 +70,27 @@
                         <input type="submit" class="button" value="Save">
                     </section>
                 </form>
-                <form class="/editAdditionalInfo/<%= user._id %>" method="post">
+                <form action="/editAdditionalInfo/<%= user._id %>" method="post">
                     <section id="additional-info">
                         <label for="condo">Condominium/Place</label>
                         <div class="custom-select">
-                            <select required>
-                                <option value="condo-placeholder" name ="uCondo" id="placeholder">Select Place:</option>
-                                <option value="condo1">Manila Residences</option>
-                                <option value="condo2">Studio Zen</option>
-                                <option value="condo3">WH Taft Residences</option>
-                                <option value="condo4">One Archer's Place</option>
-                                <option value="condo-default">None</option>
+                            <select required name ="uCondo">
+                                <% if(user.uCondo === "") { %>
+                                    <option value="condo-placeholder" name ="uCondo" id="placeholder">Select Place:</option>
+                                   <%}else {%>
+                                    <option value="<%= user.uCondo %>" name ="uCondo" id="placeholder"><%= user.uCondo %></option>
+                                    <%} %>
+                                <% condos.forEach(condo => { %>
+                                    <option value="<%= condo.cName %>"><%= condo.cName %></option>
+                                <%}) %>
                             </select>
                         </div>
                         <label for="bio">User Bio (400 character limit)</label>
-                        <textarea id="bio" name= "bio" placeholder="Write a short bio..." maxlength="400" style="resize: none;"></textarea>
+                        <% if(user.bio === "") { %>
+                            <textarea id="bio" name= "bio" placeholder="Write a short bio..." maxlength="400" style="resize: none;"></textarea>
+                        <%}else {%>
+                            <textarea id="bio" name= "bio" maxlength="400" style="resize: none;"><%= user.bio %></textarea>
+                            <%} %>
                         <input type="submit" class="button" value="Save">
                     </section>
                 </form>
